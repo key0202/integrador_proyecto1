@@ -51,8 +51,6 @@ public class Registro_Profesor extends javax.swing.JDialog {
 
         jPanel3.setBackground(new java.awt.Color(0, 204, 255));
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jTextField1.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
         jPanel3.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 350, 120, 31));
 
         jButton3.setBackground(new java.awt.Color(255, 51, 51));
@@ -70,38 +68,25 @@ public class Registro_Profesor extends javax.swing.JDialog {
         jButton1.setText("Registrarse");
         jButton1.setBorderPainted(false);
         jPanel3.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 430, -1, 34));
-
-        jPasswordField1.setText("jPasswordField1");
         jPanel3.add(jPasswordField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 310, 120, 30));
-
-        jTextField2.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
         jPanel3.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 180, 120, 31));
-
-        jTextField3.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
         jPanel3.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 260, 120, 31));
-
-        jTextField4.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
         jPanel3.add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 220, 120, 31));
 
         jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 0, 260, 610));
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
         jLabel1.setText("DNI");
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 360, 50, 20));
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
         jLabel2.setText("Usuario");
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 270, -1, -1));
 
-        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
         jLabel3.setText("Nombre");
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 180, 70, 30));
 
-        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
         jLabel4.setText("Contraseña");
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 310, -1, -1));
 
-        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
         jLabel5.setText("Apellidos");
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 230, -1, -1));
 
