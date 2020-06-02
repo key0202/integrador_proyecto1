@@ -1,26 +1,23 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package modelo.dto;
 
-/**
- *
- * @author Sammy Guergachi <sguergachi at gmail.com>
- */
-public class Profesores {
+import java.util.List;
 
+
+public class Profesor {
+    private int id;
     private String nombre;
     private String apellidos;
     private String usuario;
     private String password;
     private String dni;
+    private List<Materia> listMateria;
+    
 
-    public Profesores() {
+    public Profesor() {
     }
 
-    public Profesores(String nombre, String apellidos, String usuario, String password, String dni) {
+    public Profesor(String nombre, String apellidos, String usuario, String password, String dni) {
         this.nombre = nombre;
         this.apellidos = apellidos;
         this.usuario = usuario;
@@ -67,4 +64,19 @@ public class Profesores {
     public void setDni(String dni) {
         this.dni = dni;
     }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    @Override
+    public String toString() {
+        return "Profesor{" + "id=" + id + ", nombre=" + nombre + ", apellidos=" + apellidos + ", usuario=" + usuario + ", password=" + password + ", dni=" + dni + '}';
+    }
+    
+    
 }

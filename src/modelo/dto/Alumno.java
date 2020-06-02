@@ -1,28 +1,23 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package modelo.dto;
 
 import java.util.Date;
 
-/**
- *
- * @author DAVID
- */
-public class Alumnos {
 
+public class Alumno {
+
+    private int id;
     private String nombre;
     private String apellido;
     private String dni;
     private String genero;
     private Date fechaNacimiento;
+    private Materia materia;
 
-    public Alumnos() {
+    public Alumno() {
     }
 
-    public Alumnos(String nombre, String apellido, String dni, String genero, Date fechaNacimiento) {
+    public Alumno(String nombre, String apellido, String dni, String genero, Date fechaNacimiento) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.dni = dni;
@@ -69,5 +64,20 @@ public class Alumnos {
     public void setFechaNacimiento(Date fechaNacimiento) {
         this.fechaNacimiento = fechaNacimiento;
     }
+    
+        public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    @Override
+    public String toString() {
+        return "Alumno{" + "id=" + id + ", nombre=" + nombre + ", apellido=" + apellido + ", dni=" + dni + ", genero=" + genero + ", fechaNacimiento=" + fechaNacimiento + '}';
+    }
+    
+    
 
 }
