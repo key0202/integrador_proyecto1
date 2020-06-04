@@ -22,6 +22,7 @@ public class ControlMateria implements ActionListener {
     public ControlMateria(Registro_Materia vista_materia, DaoMateria daoMateria) {
         this.vista_materia = vista_materia;
         this.vista_materia.jButton1.addActionListener(this);
+        this.vista_materia.jButton2.addActionListener(this);
         this.daoMateria = daoMateria;
 
         this.vista_materia.setVisible(true);
@@ -41,6 +42,9 @@ public class ControlMateria implements ActionListener {
                 materia.setNombreMateria(curso);
                 daoMateria.agregarMateria(materia, vista_materia, docente);
             }
+        }
+        if(e.getSource() == vista_materia.jButton2){
+            System.exit(0);
         }
     }
 
