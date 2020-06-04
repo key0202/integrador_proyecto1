@@ -14,6 +14,12 @@ public class Registro_Materia extends javax.swing.JDialog {
     /**
      * Creates new form Registro_Materia
      */
+    
+    
+    public Registro_Materia() {
+        initComponents();
+    }
+
     public Registro_Materia(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
@@ -170,14 +176,14 @@ public class Registro_Materia extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    public javax.swing.JButton jButton1;
+    public javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextField jTextField1;
+    public javax.swing.JTextArea jTextArea1;
+    public javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
 }
