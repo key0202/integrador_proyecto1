@@ -16,7 +16,7 @@ public class ControlMateria implements ActionListener {
     private DaoMateria daoMateria;//dao
     private Registro_Materia vista_materia;//vista
     private Materia materia = new Materia();//dto
-
+    
     String docente = JOptionPane.showInputDialog(null, "Bienvenidos al modulo de registro de materias, registre su nombre").toLowerCase();
 
     public ControlMateria(Registro_Materia vista_materia, DaoMateria daoMateria) {

@@ -13,13 +13,10 @@ import modelo.dao.DaoMateria;
 import modelo.dto.Materia;
 import vista.Registro_Materia;
 
-/**
- *
- * @author DAVID
- */
+
 public class DaoMateriaImpl implements DaoMateria {
 
-    private final String username = "DAVID";
+    private final String username = "MiKeyla";
     private final String destino = "Desktop"; // Desktop, Documents, etc
     private final String direccion = "C:/Users/" + username + "/" + destino + "/materias_";
     int num = 0;
