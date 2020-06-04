@@ -28,10 +28,12 @@ public class ControlMateria implements ActionListener {
         this.vista_materia.setVisible(true);
     }
 
+    //metodo para iniciar la aplicacion
     public void iniciar() {
         daoMateria.leer(vista_materia, docente);
     }
-
+    //estos son los botones del registro de materias
+ 
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == vista_materia.jButton1) {
