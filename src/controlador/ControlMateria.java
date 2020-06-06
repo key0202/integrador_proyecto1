@@ -7,10 +7,6 @@ import modelo.dao.DaoMateria;
 import modelo.dto.Materia;
 import vista.Registro_Materia;
 
-/**
- *
- * @author DAVID
- */
 public class ControlMateria implements ActionListener {
 
     private DaoMateria daoMateria;//dao

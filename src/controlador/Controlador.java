@@ -22,17 +22,14 @@ public class Controlador implements ActionListener{
         
     }
   
-    
-    
-    
-    
-    
+ 
     @Override
     public void actionPerformed(ActionEvent e) {
         if( e.getSource() == login.btnIngresar){
-           
+           //Aciones del boton ingresar
             System.out.println("hola");
      
+            
             
         }
         

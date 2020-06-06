@@ -10,8 +10,10 @@ import vista.Registro_Materia;
  * @author DAVID
  */
 public class TestMateria {
-    public static void main(String[] args) {        
+    public static void main(String[] args) {
+        
         DaoMateria dm = new DaoMateriaImpl();
+        
         Registro_Materia vistaMateria = new Registro_Materia();
         
         ControlMateria control = new ControlMateria(vistaMateria, dm);
