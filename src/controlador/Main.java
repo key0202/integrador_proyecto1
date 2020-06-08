@@ -1,20 +1,28 @@
 package controlador;
 
-import modelo.dao.ProfesorDAO;
+
+import modelo.dao.DaoMateria;
+
+import modelo.dao.impl.DaoMateriaImpl;
+import modelo.dao.impl.DaoProfesorImpl;
 import vista.Login;
 import vista.MenuPrincipal;
+import vista.Registro_Materia;
 
 public class Main {
 
     public static void main(String[] args) {
 
         Login login = new Login();
-        ProfesorDAO profesorDao = new ProfesorDAO();
-        MenuPrincipal mp = new MenuPrincipal();
+        DaoProfesorImpl daoprofesor = new DaoProfesorImpl();
+        DaoMateria dm = new DaoMateriaImpl();
+        Registro_Materia vistaMateria = new Registro_Materia();
+        MenuPrincipal menuPrincipal = new MenuPrincipal();
         
-        Controlador con = new Controlador(login, profesorDao, mp);
-        
-        login.setVisible(true);
+       // ControlMateria control = new ControlMateria(vistaMateria, dm);
+       // control.iniciar();
+       
+       Controlador controlador = new Controlador(login, daoprofesor, menuPrincipal);
         
     }
 }

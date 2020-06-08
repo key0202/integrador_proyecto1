@@ -17,8 +17,8 @@ public class ControlMateria implements ActionListener {
 
     public ControlMateria(Registro_Materia vista_materia, DaoMateria daoMateria) {
         this.vista_materia = vista_materia;
-        this.vista_materia.jButton1.addActionListener(this);
-        this.vista_materia.jButton2.addActionListener(this);
+        this.vista_materia.btnAgregar.addActionListener(this);
+        this.vista_materia.btnRegresar.addActionListener(this);
         this.daoMateria = daoMateria;
 
         this.vista_materia.setVisible(true);
@@ -30,7 +30,7 @@ public class ControlMateria implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == vista_materia.jButton1) {
+        if (e.getSource() == vista_materia.btnAgregar) {
             String curso = vista_materia.jTextField1.getText();
             if (curso.trim().equals("")) {
                 JOptionPane.showMessageDialog(null, "Debe agregar una materia");
@@ -39,7 +39,7 @@ public class ControlMateria implements ActionListener {
                 daoMateria.agregarMateria(materia, vista_materia, docente);
             }
         }
-        if(e.getSource() == vista_materia.jButton2){
+        if(e.getSource() == vista_materia.btnRegresar){
             System.exit(0);
         }
     }

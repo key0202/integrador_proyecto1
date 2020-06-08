@@ -35,13 +35,13 @@ public class Registro_Asistencia extends javax.swing.JDialog {
         txtNombre = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        comoBoxMateria = new javax.swing.JComboBox<>();
-        fecha_asistencia = new org.jdesktop.swingx.JXDatePicker();
+        comboMateria = new javax.swing.JComboBox<>();
+        fechaAsistencia = new org.jdesktop.swingx.JXDatePicker();
         txtApellidos = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         txtDNI = new javax.swing.JTextField();
-        comoBoxAsistencia = new javax.swing.JComboBox<>();
+        comboAsistencia = new javax.swing.JComboBox<>();
         jLabel7 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tablaAsistencia = new javax.swing.JTable();
@@ -91,9 +91,9 @@ public class Registro_Asistencia extends javax.swing.JDialog {
         jLabel4.setText("Nombre");
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 240, -1, -1));
 
-        comoBoxMateria.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jPanel1.add(comoBoxMateria, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 130, 110, -1));
-        jPanel1.add(fecha_asistencia, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 190, 110, -1));
+        comboMateria.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jPanel1.add(comboMateria, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 130, 110, -1));
+        jPanel1.add(fechaAsistencia, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 190, 110, -1));
         jPanel1.add(txtApellidos, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 290, 130, -1));
 
         jLabel5.setText("DNI");
@@ -103,8 +103,8 @@ public class Registro_Asistencia extends javax.swing.JDialog {
         jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 300, -1, -1));
         jPanel1.add(txtDNI, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 350, 110, -1));
 
-        comoBoxAsistencia.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Asistio", "Falto" }));
-        jPanel1.add(comoBoxAsistencia, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 410, 110, -1));
+        comboAsistencia.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Asistio", "Falto" }));
+        jPanel1.add(comboAsistencia, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 410, 110, -1));
 
         jLabel7.setText("Asistencia");
         jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 410, -1, -1));
@@ -134,8 +134,8 @@ public class Registro_Asistencia extends javax.swing.JDialog {
         btnGuardar.setText("Guardar");
         jPanel1.add(btnGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 520, 90, 50));
 
-        btnRegresar.setText("Regresar");
-        jPanel1.add(btnRegresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 520, 90, 50));
+        btnRegresar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/regresar.png"))); // NOI18N
+        jPanel1.add(btnRegresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 520, 100, 50));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, 710, 620));
 
@@ -187,9 +187,9 @@ public class Registro_Asistencia extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnGuardar;
     private javax.swing.JButton btnRegresar;
-    private javax.swing.JComboBox<String> comoBoxAsistencia;
-    private javax.swing.JComboBox<String> comoBoxMateria;
-    private org.jdesktop.swingx.JXDatePicker fecha_asistencia;
+    private javax.swing.JComboBox<String> comboAsistencia;
+    private javax.swing.JComboBox<String> comboMateria;
+    private org.jdesktop.swingx.JXDatePicker fechaAsistencia;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

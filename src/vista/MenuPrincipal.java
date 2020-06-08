@@ -36,24 +36,20 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        btnRegistrarAlumno = new javax.swing.JButton();
+        btnRegistrarAsistencia = new javax.swing.JButton();
+        btnRegistrarMateria = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jButton4 = new javax.swing.JButton();
+        btnRegistrarNotas = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
+        txtNombreProfesor = new javax.swing.JLabel();
+        txtdniProfesor = new javax.swing.JLabel();
+        txtUsuario = new javax.swing.JLabel();
+        txtNombreProfesor1 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
-        jMenuItem4 = new javax.swing.JMenuItem();
-        jMenuItem5 = new javax.swing.JMenuItem();
-        jMenuItem6 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jMenuItem3 = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
@@ -98,16 +94,16 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jPanel4.setBackground(new java.awt.Color(0, 204, 255));
         jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jButton1.setBackground(new java.awt.Color(255, 255, 255));
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/alumno.png"))); // NOI18N
-        jPanel4.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, 140, 140));
+        btnRegistrarAlumno.setBackground(new java.awt.Color(255, 255, 255));
+        btnRegistrarAlumno.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/alumno.png"))); // NOI18N
+        jPanel4.add(btnRegistrarAlumno, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, 140, 140));
 
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/calendario1.jpg"))); // NOI18N
-        jPanel4.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 310, 140, 150));
+        btnRegistrarAsistencia.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/calendario1.jpg"))); // NOI18N
+        jPanel4.add(btnRegistrarAsistencia, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 310, 140, 150));
 
-        jButton3.setBackground(new java.awt.Color(255, 255, 255));
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/curso.png"))); // NOI18N
-        jPanel4.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 60, 140, 140));
+        btnRegistrarMateria.setBackground(new java.awt.Color(255, 255, 255));
+        btnRegistrarMateria.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/curso.png"))); // NOI18N
+        jPanel4.add(btnRegistrarMateria, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 60, 140, 140));
 
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Registrar Alumno");
@@ -122,8 +118,8 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jLabel4.setText("Registrar Notas");
         jPanel4.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 470, 90, 20));
 
-        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/notas.png"))); // NOI18N
-        jPanel4.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 310, 140, 150));
+        btnRegistrarNotas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/notas.png"))); // NOI18N
+        jPanel4.add(btnRegistrarNotas, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 310, 140, 150));
 
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Registrar Materia");
@@ -133,36 +129,35 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel6.setText("Datos de Usuario");
-        jPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 160, 120, 30));
+        jPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 150, 120, 40));
 
-        jLabel7.setText("Armi Saldaza Mendez");
-        jPanel2.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 240, 120, 30));
+        txtNombreProfesor.setFont(new java.awt.Font("Tahoma", 2, 12)); // NOI18N
+        txtNombreProfesor.setForeground(new java.awt.Color(0, 204, 255));
+        txtNombreProfesor.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        txtNombreProfesor.setText("Nombre");
+        jPanel2.add(txtNombreProfesor, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 240, 140, 30));
 
-        jLabel8.setText("77448802");
-        jPanel2.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 310, 60, 40));
+        txtdniProfesor.setFont(new java.awt.Font("Tahoma", 2, 12)); // NOI18N
+        txtdniProfesor.setForeground(new java.awt.Color(0, 204, 255));
+        txtdniProfesor.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        txtdniProfesor.setText("DNI");
+        jPanel2.add(txtdniProfesor, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 340, 140, 30));
 
-        jLabel9.setText("jLabel9");
-        jPanel2.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 380, 50, 40));
+        txtUsuario.setFont(new java.awt.Font("Tahoma", 2, 12)); // NOI18N
+        txtUsuario.setForeground(new java.awt.Color(0, 204, 255));
+        txtUsuario.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        txtUsuario.setText("Nombre Usuario");
+        jPanel2.add(txtUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 400, 140, 30));
+
+        txtNombreProfesor1.setFont(new java.awt.Font("Tahoma", 2, 12)); // NOI18N
+        txtNombreProfesor1.setForeground(new java.awt.Color(0, 204, 255));
+        txtNombreProfesor1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        txtNombreProfesor1.setText("Paterno Materno");
+        jPanel2.add(txtNombreProfesor1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 290, 140, 30));
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 550, 670));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 550, 670));
-
-        jMenu1.setText("Registros");
-
-        jMenuItem1.setText("Alumno");
-        jMenu1.add(jMenuItem1);
-
-        jMenuItem4.setText(" Materia");
-        jMenu1.add(jMenuItem4);
-
-        jMenuItem5.setText("Asistencias");
-        jMenu1.add(jMenuItem5);
-
-        jMenuItem6.setText("Notas");
-        jMenu1.add(jMenuItem6);
-
-        jMenuBar1.add(jMenu1);
 
         jMenu2.setText("Archivos");
 
@@ -219,33 +214,29 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    public javax.swing.JButton jButton1;
-    public javax.swing.JButton jButton2;
-    public javax.swing.JButton jButton3;
-    public javax.swing.JButton jButton4;
+    public javax.swing.JButton btnRegistrarAlumno;
+    public javax.swing.JButton btnRegistrarAsistencia;
+    public javax.swing.JButton btnRegistrarMateria;
+    public javax.swing.JButton btnRegistrarNotas;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
-    private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu5;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
-    private javax.swing.JMenuItem jMenuItem4;
-    private javax.swing.JMenuItem jMenuItem5;
-    private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
+    public javax.swing.JLabel txtNombreProfesor;
+    public javax.swing.JLabel txtNombreProfesor1;
+    public javax.swing.JLabel txtUsuario;
+    public javax.swing.JLabel txtdniProfesor;
     // End of variables declaration//GEN-END:variables
 }

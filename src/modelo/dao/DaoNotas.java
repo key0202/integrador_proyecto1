@@ -1,9 +1,7 @@
 
-
 package modelo.dao;
 
 
-public class NotasDao {
-
+public interface DaoNotas {
     
 }
