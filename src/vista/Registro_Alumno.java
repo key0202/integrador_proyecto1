@@ -15,6 +15,10 @@ public class Registro_Alumno extends javax.swing.JDialog {
         initComponents();
     }
 
+    public Registro_Alumno() {
+        initComponents();
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

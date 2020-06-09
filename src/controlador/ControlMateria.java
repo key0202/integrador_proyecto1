@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
 import modelo.dao.DaoMateria;
 import modelo.dto.Materia;
+import vista.MenuPrincipal;
 import vista.Registro_Materia;
 
 public class ControlMateria implements ActionListener {
@@ -12,8 +13,12 @@ public class ControlMateria implements ActionListener {
     private DaoMateria daoMateria;//dao
     private Registro_Materia vista_materia;//vista
     private Materia materia = new Materia();//dto
-    
-    String docente = JOptionPane.showInputDialog(null, "Bienvenidos al modulo de registro de materias, registre su nombre").toLowerCase();
+
+    //jframes a los que se dirigira
+    MenuPrincipal menuPrincipal = new MenuPrincipal();
+
+    //obtenemos nombre de usuario
+    String docente = Controlador.docente;
 
     public ControlMateria(Registro_Materia vista_materia, DaoMateria daoMateria) {
         this.vista_materia = vista_materia;
@@ -28,8 +33,8 @@ public class ControlMateria implements ActionListener {
     public void iniciar() {
         daoMateria.leer(vista_materia, docente);
     }
+    
     //estos son los botones del registro de materias
- 
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == vista_materia.btnAgregar) {
@@ -41,8 +46,11 @@ public class ControlMateria implements ActionListener {
                 daoMateria.agregarMateria(materia, vista_materia, docente);
             }
         }
-        if(e.getSource() == vista_materia.btnRegresar){
-            System.exit(0);
+        if (e.getSource() == vista_materia.btnRegresar) {
+            //regresamos a MenuPrincipal
+            ControladorMenu ctrlMenu = new ControladorMenu(menuPrincipal);
+            ctrlMenu.menuPrincipal.setVisible(true);
+            vista_materia.dispose();
         }
     }
 

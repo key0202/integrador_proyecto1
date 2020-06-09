@@ -1,5 +1,6 @@
 package modelo.dao.impl;
 
+import controlador.ControladorMenu;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -16,9 +17,13 @@ import vista.Registro_Materia;
 
 public class DaoMateriaImpl implements DaoMateria {
 
-    private final String username = "MiKeyla";
-    private final String destino = "Desktop"; // Desktop, Documents, etc
-    private final String direccion = "C:/Users/" + username + "/" + destino + "/materias_";
+    //private final String username = "MiKeyla";
+    //private final String destino = "Desktop"; // Desktop, Documents, etc
+    //private final String direccion = "C:/Users/" + username + "/" + destino + "/materias_";
+    
+    String username = ControladorMenu.username;
+    String destino = ControladorMenu.destino;
+    String direccion = ControladorMenu.direccion;
     int num = 0;
 
     //obtener donde se guardaran los cambios
