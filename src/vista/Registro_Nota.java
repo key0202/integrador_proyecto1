@@ -10,6 +10,9 @@ public class Registro_Nota extends javax.swing.JDialog {
         initComponents();
     }
 
+    public Registro_Nota() {
+        initComponents();
+    }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents

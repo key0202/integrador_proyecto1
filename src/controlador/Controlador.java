@@ -12,12 +12,20 @@ import modelo.dto.Profesor;
 
 public class Controlador implements ActionListener {
 
-    Login login ;
+    //jframe de este controlador
+    Login login;
     DaoProfesorImpl daoProfesor;
+
+    //jframes a los que se dirigira
     MenuPrincipal menuPrincipal = new MenuPrincipal();
+
+    //enviar datos entre interfaces
+    public static String docente = "";
+    public static String apellido = "";
+    public static String DNI = "";
+    public static String user = "";
     Profesor profesor = null;
 
-    
     public Controlador(Login login, DaoProfesorImpl daoProfesor, MenuPrincipal menuPrincipal) {
         this.daoProfesor = daoProfesor;
         this.login = login;
@@ -26,8 +34,6 @@ public class Controlador implements ActionListener {
         iniciarVista();
     }
 
-    
-    
     private void iniciarVista() {
         login.setVisible(true);
     }
@@ -50,18 +56,26 @@ public class Controlador implements ActionListener {
                 JOptionPane.showMessageDialog(null, "Credenciales no validas");
             }*/
             try {
-                
+
                 profesor = daoProfesor.validarSesion(usuario, password);
                 if (profesor != null) {
-                    JOptionPane.showMessageDialog(null, "Bienvenido " + profesor.getNombre());
-                    JOptionPane.showMessageDialog(null,  profesor);
+                    docente = profesor.getNombre().trim().toLowerCase();
+                    apellido = profesor.getApellidos();
+                    DNI = profesor.getDni();
+                    user = profesor.getUsuario();
                     
+                    JOptionPane.showMessageDialog(null, "Bienvenido(a) " + docente);
+                    //JOptionPane.showMessageDialog(null, profesor);
+                    
+                    //llamamos al controlador del jframe al que nos dirigimos
+                    ControladorMenu ctrlMenu = new ControladorMenu(menuPrincipal);
+                    ctrlMenu.menuPrincipal.setVisible(true);
                     login.dispose();
-                    menuPrincipal.setVisible(true);
+                    //menuPrincipal.setVisible(true);
                 } else {
-                     JOptionPane.showMessageDialog(null, usuario);
-                      JOptionPane.showMessageDialog(null, password);
-                     JOptionPane.showMessageDialog(null,  profesor);
+                    //JOptionPane.showMessageDialog(null, usuario);
+                    //JOptionPane.showMessageDialog(null, password);
+                    //JOptionPane.showMessageDialog(null, profesor);
                     JOptionPane.showMessageDialog(null, "Credencianels invalidas");
                 }
             } catch (HeadlessException ex) {
