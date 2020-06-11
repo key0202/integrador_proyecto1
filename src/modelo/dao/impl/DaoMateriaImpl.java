@@ -8,8 +8,13 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.StringTokenizer;
 import javax.swing.JOptionPane;
+import modelo.Conexion;
 import modelo.dao.DaoMateria;
 import modelo.dto.Materia;
 import vista.Registro_Materia;
@@ -25,6 +30,15 @@ public class DaoMateriaImpl implements DaoMateria {
     String destino = ControladorMenu.destino;
     String direccion = ControladorMenu.direccion;
     int num = 0;
+    private String message;
+    private Conexion conexion;
+
+    public DaoMateriaImpl() {
+        this.conexion = new Conexion();
+    }
+    
+    
+    
 
     //obtener donde se guardaran los cambios
     public String midirectorio(String docente) {
@@ -106,6 +120,42 @@ public class DaoMateriaImpl implements DaoMateria {
         } catch (IOException error) {
             JOptionPane.showMessageDialog(null, "Error agregarMateria(): " + error);
         }
+    }
+
+    @Override
+    public String getIdMateria(String nombreMateria) {
+  
+
+       String id=null;
+        StringBuilder sql = new StringBuilder();
+        sql.append("SELECT ")
+                .append("id ")
+                .append("FROM materia ")
+                .append("WHERE nombremateria = ?");
+        try (Connection cn = conexion.conexionDB()) {
+            PreparedStatement ps = cn.prepareStatement(sql.toString());
+            ps.setString(1, nombreMateria);
+            
+            try (ResultSet rs = ps.executeQuery()) {
+
+                if (rs.next()) {         
+                   id =  rs.getString("id");
+
+                } else {
+                    id= null;
+                }
+
+            } catch (SQLException e) {
+                message = e.getMessage();
+                System.out.println("Error getIdMateria" + message);
+            }
+
+        } catch (SQLException e) {
+            message = e.getMessage();
+            System.out.println("Error 1 getIdMateria" + message);
+        }
+        
+        return id;
     }
 
 }

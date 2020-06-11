@@ -45,16 +45,6 @@ public class Controlador implements ActionListener {
             String usuario = login.txtUsuario.getText();
             String password = login.txtPassword.getText();
 
-            /* profesor= daoProfesor.validarSesion(usuario, password); 
-            if( profesor.getUsuario() == null){
-                
-                menuPrincipal.setVisible(true);
-                
-            }else{
-                JOptionPane.showMessageDialog(null, profesor.getUsuario());
-                JOptionPane.showMessageDialog(null, profesor.getPassword());
-                JOptionPane.showMessageDialog(null, "Credenciales no validas");
-            }*/
             try {
 
                 profesor = daoProfesor.validarSesion(usuario, password);

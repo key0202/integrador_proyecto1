@@ -5,13 +5,14 @@ package modelo.dto;
 public class Notas {
 
     private int id;
+    private String cod_profesor;
+    private String cod_alumno;
     private double nota1;
     private double nota2;
     private double nota3;
     private double ef;
     private double promedio;
-    private String cod_profesor;
-    private String cod_alumno;
+    
     
     
 

@@ -14,10 +14,7 @@ import vista.Registro_Asistencia;
 import vista.Registro_Materia;
 import vista.Registro_Nota;
 
-/**
- *
- * @author DAVID
- */
+
 public class ControladorMenu implements ActionListener {
 
     //jframe de este controlador
@@ -32,22 +29,29 @@ public class ControladorMenu implements ActionListener {
     //Dao de los jframes
     DaoMateria daoMateria = new DaoMateriaImpl();
     DaoAlumno daoAlumno = new DaoAlumnoImpl();
+    
 
     //obtenemos nombre de usuario del logins
     String docente = Controlador.docente;
 
     //direccion donde se crearan los archivos txt
-    public static String username = "DAVID";
+    public static String username = "MiKeyla";
     public static String destino = "Desktop"; // Desktop, Documents, etc
-    public static String direccion = "C:/Users/" + username + "/" + destino + "/materias_";
+    public static String direccion = "C:/Users/" + username + "/" + destino + "/TeachTools_";
 
     public ControladorMenu(MenuPrincipal menuPrincipal) {
         this.menuPrincipal = menuPrincipal;
+        eventos();
+        datosDocente();
+    }
+    
+    
+    //Eventos de los botones del frame Menu Principal
+    public void eventos(){
         this.menuPrincipal.btnRegistrarMateria.addActionListener(this);
         this.menuPrincipal.btnRegistrarAlumno.addActionListener(this);
         this.menuPrincipal.btnRegistrarAsistencia.addActionListener(this);
         this.menuPrincipal.btnRegistrarNotas.addActionListener(this);
-        datosDocente();
     }
 
     //datos del docente
@@ -60,26 +64,33 @@ public class ControladorMenu implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        
+        //Boton Registrar MATERIA del Menu Principañ
         if (e.getSource() == menuPrincipal.btnRegistrarMateria) {
             //llamamos al controlador del jframe al que nos dirigimos
-            ControlMateria ctrlMateria = new ControlMateria(registroMateria, daoMateria);
+            ControladorMateria ctrlMateria = new ControladorMateria(registroMateria, daoMateria);
             ctrlMateria.iniciar();
             menuPrincipal.dispose();
         }
 
+        //Boton Registrar ALUMNO del Menu principal
         if (e.getSource() == menuPrincipal.btnRegistrarAlumno) {
             File directorio = new File(direccion + docente);
             if (directorio.exists()) {
                 //llamamos al controlador del jframe al que nos dirigimos
                 //JOptionPane.showMessageDialog(null, "Registrar alumno");
-                ControlAlumno ctrlAlumno = new ControlAlumno(registroAlumno, daoAlumno);
+               
+                ControladorAlumno ctrlAlumno = new ControladorAlumno(registroAlumno, daoAlumno);
+                
                 ctrlAlumno.iniciar();
+   
                 menuPrincipal.dispose();
             } else {
                 JOptionPane.showMessageDialog(null, "Primero se debe registrar las materias " + docente);
             }
         }
 
+        //Boton Registrar ASISTENCIA del Menu principal
         if (e.getSource() == menuPrincipal.btnRegistrarAsistencia) {
             File directorio = new File(direccion + docente);
             if (directorio.exists()) {
@@ -91,6 +102,7 @@ public class ControladorMenu implements ActionListener {
             }
         }
 
+        //Boton Registrar NOTAS del Menu principal
         if (e.getSource() == menuPrincipal.btnRegistrarNotas) {
             File directorio = new File(direccion + docente);
             if (directorio.exists()) {

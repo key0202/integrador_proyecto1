@@ -1,6 +1,6 @@
 package run;
 
-import controlador.ControlMateria;
+import controlador.ControladorMateria;
 import modelo.dao.DaoMateria;
 import modelo.dao.impl.DaoMateriaImpl;
 import vista.Registro_Materia;
@@ -13,7 +13,7 @@ public class TestMateria {
         
         Registro_Materia vistaMateria = new Registro_Materia();
         
-        ControlMateria control = new ControlMateria(vistaMateria, dm);
+        ControladorMateria control = new ControladorMateria(vistaMateria, dm);
         control.iniciar();
     }
 }

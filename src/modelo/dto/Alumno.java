@@ -1,6 +1,7 @@
 
 package modelo.dto;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 
@@ -8,18 +9,26 @@ public class Alumno {
 
     private int id;
     private String nombre;
-    private String apellido;
+    private String apellidos;
     private String dni;
     private String genero;
-    private Date fechaNacimiento;
-    private Materia materia;
+    private LocalDate fechaNacimiento;
+    private String materia;
+
+    public String getMateria() {
+        return materia;
+    }
+
+    public void setMateria(String materia) {
+        this.materia = materia;
+    }
 
     public Alumno() {
     }
 
-    public Alumno(String nombre, String apellido, String dni, String genero, Date fechaNacimiento) {
+    public Alumno(String nombre, String apellido, String dni, String genero, LocalDate fechaNacimiento) {
         this.nombre = nombre;
-        this.apellido = apellido;
+        this.apellidos = apellido;
         this.dni = dni;
         this.genero = genero;
         this.fechaNacimiento = fechaNacimiento;
@@ -33,12 +42,12 @@ public class Alumno {
         this.nombre = nombre;
     }
 
-    public String getApellido() {
-        return apellido;
+    public String getApellidos() {
+        return apellidos;
     }
 
-    public void setApellido(String apellido) {
-        this.apellido = apellido;
+    public void setApellidos(String apellidos) {
+        this.apellidos = apellidos;
     }
 
     public String getDni() {
@@ -57,11 +66,11 @@ public class Alumno {
         this.genero = genero;
     }
 
-    public Date getFechaNacimiento() {
+    public LocalDate getFechaNacimiento() {
         return fechaNacimiento;
     }
 
-    public void setFechaNacimiento(Date fechaNacimiento) {
+    public void setFechaNacimiento(LocalDate fechaNacimiento) {
         this.fechaNacimiento = fechaNacimiento;
     }
     
@@ -75,8 +84,9 @@ public class Alumno {
 
     @Override
     public String toString() {
-        return "Alumno{" + "id=" + id + ", nombre=" + nombre + ", apellido=" + apellido + ", dni=" + dni + ", genero=" + genero + ", fechaNacimiento=" + fechaNacimiento + '}';
+        return "Alumno{" + "id=" + id + ", nombre=" + nombre + ", apellidos=" + apellidos + ", dni=" + dni + ", genero=" + genero + '}';
     }
+
     
     
 

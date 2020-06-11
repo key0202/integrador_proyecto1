@@ -8,7 +8,7 @@ import modelo.dto.Materia;
 import vista.MenuPrincipal;
 import vista.Registro_Materia;
 
-public class ControlMateria implements ActionListener {
+public class ControladorMateria implements ActionListener {
 
     private DaoMateria daoMateria;//dao
     private Registro_Materia vista_materia;//vista
@@ -20,18 +20,21 @@ public class ControlMateria implements ActionListener {
     //obtenemos nombre de usuario
     String docente = Controlador.docente;
 
-    public ControlMateria(Registro_Materia vista_materia, DaoMateria daoMateria) {
+    public ControladorMateria(Registro_Materia vista_materia, DaoMateria daoMateria) {
         this.vista_materia = vista_materia;
-        this.vista_materia.btnAgregar.addActionListener(this);
-        this.vista_materia.btnRegresar.addActionListener(this);
         this.daoMateria = daoMateria;
-
         this.vista_materia.setVisible(true);
+        eventos();
     }
 
     //metodo para iniciar la aplicacion
     public void iniciar() {
         daoMateria.leer(vista_materia, docente);
+    }
+    
+    public void eventos(){
+        this.vista_materia.btnAgregar.addActionListener(this);
+        this.vista_materia.btnRegresar.addActionListener(this);
     }
     
     //estos son los botones del registro de materias

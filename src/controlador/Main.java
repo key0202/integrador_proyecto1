@@ -15,9 +15,11 @@ public class Main {
 
         Login login = new Login();
         DaoProfesorImpl daoprofesor = new DaoProfesorImpl();
-        DaoMateria dm = new DaoMateriaImpl();
+        DaoMateria daoMateria = new DaoMateriaImpl();
         Registro_Materia vistaMateria = new Registro_Materia();
         MenuPrincipal menuPrincipal = new MenuPrincipal();
+        
+        
         
        // ControlMateria control = new ControlMateria(vistaMateria, dm);
        // control.iniciar();
