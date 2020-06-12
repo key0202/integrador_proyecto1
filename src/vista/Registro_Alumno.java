@@ -31,7 +31,6 @@ public class Registro_Alumno extends javax.swing.JDialog {
         txtApellidos = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         txtDNI = new javax.swing.JTextField();
-        jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         comboGenero = new javax.swing.JComboBox<>();
         btnLimpiar = new javax.swing.JButton();
@@ -39,9 +38,8 @@ public class Registro_Alumno extends javax.swing.JDialog {
         jLabel7 = new javax.swing.JLabel();
         comboMateria = new javax.swing.JComboBox<>();
         btnExportarTabla = new javax.swing.JButton();
-        fechaNacimiento = new org.jdesktop.swingx.JXDatePicker();
         btnVolver = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
+        btnListaAlumnos = new javax.swing.JButton();
 
         jButton2.setText("jButton2");
 
@@ -76,6 +74,7 @@ public class Registro_Alumno extends javax.swing.JDialog {
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        tablaAlumnos.setBackground(new java.awt.Color(0, 204, 255));
         tablaAlumnos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -84,9 +83,11 @@ public class Registro_Alumno extends javax.swing.JDialog {
                 "Nombre", "Apellidos", "DNI"
             }
         ));
+        tablaAlumnos.setGridColor(new java.awt.Color(0, 0, 0));
+        tablaAlumnos.setSelectionBackground(new java.awt.Color(204, 204, 204));
         jScrollPane1.setViewportView(tablaAlumnos);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 450, 580, 155));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 410, 580, 200));
 
         jLabel2.setText("Nombre");
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(33, 72, -1, -1));
@@ -99,9 +100,6 @@ public class Registro_Alumno extends javax.swing.JDialog {
         jLabel4.setText("DNI");
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(33, 227, -1, -1));
         jPanel1.add(txtDNI, new org.netbeans.lib.awtextra.AbsoluteConstraints(33, 247, 135, -1));
-
-        jLabel5.setText("Fecha de Nacimiento");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 310, -1, -1));
 
         jLabel6.setText("Genero");
         jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 70, -1, -1));
@@ -126,16 +124,15 @@ public class Registro_Alumno extends javax.swing.JDialog {
         jPanel1.add(comboMateria, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 180, 110, -1));
 
         btnExportarTabla.setText("Exportar Tabla");
-        jPanel1.add(btnExportarTabla, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 360, 140, 40));
-        jPanel1.add(fechaNacimiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 350, 130, -1));
+        jPanel1.add(btnExportarTabla, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 300, 140, 40));
 
         btnVolver.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/regresar.png"))); // NOI18N
-        jPanel1.add(btnVolver, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 523, 110, 70));
+        jPanel1.add(btnVolver, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 410, 110, 70));
 
-        jButton6.setText("...");
-        jPanel1.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 100, 30, -1));
+        btnListaAlumnos.setText("...");
+        jPanel1.add(btnListaAlumnos, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 100, 30, -1));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 70, 830, 690));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 70, 830, 670));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -188,17 +185,15 @@ public class Registro_Alumno extends javax.swing.JDialog {
     public javax.swing.JButton btnAgregar;
     public javax.swing.JButton btnExportarTabla;
     public javax.swing.JButton btnLimpiar;
+    public javax.swing.JButton btnListaAlumnos;
     public javax.swing.JButton btnVolver;
     public javax.swing.JComboBox<String> comboGenero;
     public javax.swing.JComboBox<String> comboMateria;
-    public org.jdesktop.swingx.JXDatePicker fechaNacimiento;
     private javax.swing.JButton jButton2;
-    public javax.swing.JButton jButton6;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;

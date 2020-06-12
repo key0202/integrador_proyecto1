@@ -158,4 +158,29 @@ public class DaoMateriaImpl implements DaoMateria {
         return id;
     }
 
+    @Override
+    public String insertarMateria(Materia materia) {
+        //To change body of generated methods, choose Tools | Templates.
+        StringBuilder sql = new StringBuilder();
+        sql.append("INSERT INTO materia( ")
+                .append("nombremateria ")
+                .append(") VALUES (?) ");
+
+        try (Connection cn = conexion.conexionDB()) {
+            PreparedStatement ps = cn.prepareStatement(sql.toString());
+
+            ps.setString(1, materia.getNombreMateria());
+            
+            int ctos = ps.executeUpdate();
+            if (ctos == 0) {
+                message = "cero filas insertadas";
+            }
+
+        } catch (SQLException e) {
+            message = e.getMessage();// si hay error
+        }
+        return message;    
+    }
+    
+
 }

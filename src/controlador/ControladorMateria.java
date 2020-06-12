@@ -40,15 +40,22 @@ public class ControladorMateria implements ActionListener {
     //estos son los botones del registro de materias
     @Override
     public void actionPerformed(ActionEvent e) {
+        
+        //Boton Agregar la de vista Registro_Materia
         if (e.getSource() == vista_materia.btnAgregar) {
             String curso = vista_materia.jTextField1.getText();
             if (curso.trim().equals("")) {
                 JOptionPane.showMessageDialog(null, "Debe agregar una materia");
             } else {
                 materia.setNombreMateria(curso);
+                //Agregar para archivo txt
                 daoMateria.agregarMateria(materia, vista_materia, docente);
+                //Agregar para DB
+                daoMateria.insertarMateria(materia);
             }
         }
+        
+        //Boton Regresar de la vista Registro_Materia
         if (e.getSource() == vista_materia.btnRegresar) {
             //regresamos a MenuPrincipal
             ControladorMenu ctrlMenu = new ControladorMenu(menuPrincipal);
