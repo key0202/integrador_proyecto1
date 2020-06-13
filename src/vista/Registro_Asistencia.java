@@ -112,6 +112,11 @@ public class Registro_Asistencia extends javax.swing.JDialog {
                 "Nombre", "Apellidos", "DNI", "Asistencia"
             }
         ));
+        tablaAsistencia.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tablaAsistenciaMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tablaAsistencia);
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 110, 360, 460));
@@ -136,6 +141,10 @@ public class Registro_Asistencia extends javax.swing.JDialog {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void tablaAsistenciaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaAsistenciaMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tablaAsistenciaMouseClicked
 
     /**
      * @param args the command line arguments
@@ -180,11 +189,11 @@ public class Registro_Asistencia extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnGuardar;
-    private javax.swing.JButton btnRegresar;
-    private javax.swing.JComboBox<String> comboAsistencia;
-    private javax.swing.JComboBox<String> comboMateria;
-    private org.jdesktop.swingx.JXDatePicker fechaAsistencia;
+    public javax.swing.JButton btnGuardar;
+    public javax.swing.JButton btnRegresar;
+    public javax.swing.JComboBox<String> comboAsistencia;
+    public javax.swing.JComboBox<String> comboMateria;
+    public org.jdesktop.swingx.JXDatePicker fechaAsistencia;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -197,9 +206,9 @@ public class Registro_Asistencia extends javax.swing.JDialog {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable tablaAsistencia;
-    private javax.swing.JTextField txtApellidos;
-    private javax.swing.JTextField txtDNI;
-    private javax.swing.JTextField txtNombre;
+    public javax.swing.JTable tablaAsistencia;
+    public javax.swing.JTextField txtApellidos;
+    public javax.swing.JTextField txtDNI;
+    public javax.swing.JTextField txtNombre;
     // End of variables declaration//GEN-END:variables
 }
