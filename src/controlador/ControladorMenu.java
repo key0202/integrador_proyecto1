@@ -130,7 +130,8 @@ public class ControladorMenu implements ActionListener {
         
         //BOTON PARA CERRAR SESIÓN Y VISUALIZAR EL LOGIN
         if(e.getSource()== menuPrincipal.menuItemCerrarSesion){     
-            menuPrincipal.dispose();
+            //menuPrincipal.dispose();
+            System.exit(0);
           //  Login login = new Login();
             //login.setVisible(true);
         }
