@@ -80,6 +80,9 @@ public class ControladorNotas implements ActionListener,ItemListener, MouseListe
             
             
             String res = daoNotas.insertarNotasDatos(ida,idm, tipoExamen, nota);
+            if(res == null){
+                JOptionPane.showMessageDialog(null, "Nota registrada");
+            }
           //  JOptionPane.showMessageDialog(null,"IdAlumno "+ ida +", IdMateria "+ idm +"Materia"+ materia);
             
         //    JOptionPane.showMessageDialog(null, vistaRegistroNota.txtNota.getText());

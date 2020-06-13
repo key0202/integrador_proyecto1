@@ -2,6 +2,8 @@ package controlador;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.io.File;
 import javax.swing.JOptionPane;
 import modelo.dao.DaoAlumno;
@@ -10,6 +12,7 @@ import modelo.dao.DaoNotas;
 import modelo.dao.impl.DaoAlumnoImpl;
 import modelo.dao.impl.DaoMateriaImpl;
 import modelo.dao.impl.DaoNotasImpl;
+import vista.Login;
 import vista.MenuPrincipal;
 import vista.Registro_Alumno;
 import vista.Registro_Asistencia;
@@ -55,6 +58,9 @@ public class ControladorMenu implements ActionListener {
         this.menuPrincipal.btnRegistrarAlumno.addActionListener(this);
         this.menuPrincipal.btnRegistrarAsistencia.addActionListener(this);
         this.menuPrincipal.btnRegistrarNotas.addActionListener(this);
+        
+        //Evento MouseClick
+        this.menuPrincipal.menuItemCerrarSesion.addActionListener(this);
     }
 
     //datos del docente
@@ -117,6 +123,41 @@ public class ControladorMenu implements ActionListener {
                 JOptionPane.showMessageDialog(null, "Primero se debe registrar las materias " + docente);
             }
         }
+        
+        //BOTON PARA CERRAR SESIÓN Y VISUALIZAR EL LOGIN
+        if(e.getSource()== menuPrincipal.menuItemCerrarSesion){     
+            menuPrincipal.dispose();
+          //  Login login = new Login();
+            //login.setVisible(true);
+        }
     }
+/*
+    @Override
+    public void mouseClicked(MouseEvent e) {
+         if(e.getClickCount()==1){
+             menuPrincipal.dispose();
+             System.out.println("menu");
+         }
+    }
+
+    @Override
+    public void mousePressed(MouseEvent e) {
+         //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent e) {
+        //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent e) {
+         //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void mouseExited(MouseEvent e) {
+         //To change body of generated methods, choose Tools | Templates.
+    }*/
 
 }
