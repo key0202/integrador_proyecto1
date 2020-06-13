@@ -19,7 +19,7 @@ public class Main {
         Registro_Materia vistaMateria = new Registro_Materia();
         MenuPrincipal menuPrincipal = new MenuPrincipal();
         
-       // ControlMateria control = new ControlMateria(vistaMateria, dm);
+       // ControlMateria control = new ControlMateria(vistaMateria, dm);pppr
        // control.iniciar();
        
        
