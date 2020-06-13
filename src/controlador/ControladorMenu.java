@@ -41,7 +41,7 @@ public class ControladorMenu implements ActionListener {
     String docente = Controlador.docente;
 
     //direccion donde se crearan los archivos txt
-    public static String username = "MiKeyla";
+    public static String username = "DAVID";
     public static String destino = "Desktop"; // Desktop, Documents, etc
     public static String direccion = "C:/Users/" + username + "/" + destino + "/TeachTools_";
 
