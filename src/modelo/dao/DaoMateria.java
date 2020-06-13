@@ -11,4 +11,7 @@ public interface DaoMateria {
     public void agregarMateria(Materia materia, Registro_Materia vistaMateria, String docente);
     
     public String getIdMateria(String nombreMateria);
+    
+    
+    public String insertarMateria(Materia materia);
 }

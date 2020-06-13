@@ -14,6 +14,9 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.StringTokenizer;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JOptionPane;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 import modelo.Conexion;
 import modelo.dao.DaoAlumno;
 import modelo.dto.Alumno;
@@ -55,7 +58,6 @@ public class DaoAlumnoImpl implements DaoAlumno {
             //  ps.setString(5, alumno.getRaza());
 
             int ctos = ps.executeUpdate();
-            
             if (ctos == 0) {
                 message = "cero filas insertadas";
             }
@@ -84,43 +86,91 @@ public class DaoAlumnoImpl implements DaoAlumno {
                 .append(") VALUES (?,?,?,?,?,(select idmateria from materia where nombremateria=?)) ");
         
     }
+    
+    select * from alumno INNER JOIN notas on (alumno.id = notas.idalumno)
+    
+    CONSULTA 
+    select * from alumno a
+INNER JOIN notas n on (a.id = n.idalumno)
+INNER JOIN materia m on (n.idmateria= m.id)
+WHERE m.nombremateria='arte'
+   
      */
-    //lista en la tabla 
+    //LISTAR EN LA TABLAR DE LA VISTA REGISTRO_ALUMNO SEGUN MATERIA 
     @Override
-    public List<Alumno> listarAlumnos(String materia) {
+    public String listarAlumnos(String materia, JTable tablaAlumnos) {
+
+        //tablaAlumnos.removeAll();
+       /* int numDatos = tablaAlumnos.getRowCount();
+        for (int i = 0; i < numDatos; i++) {
+            tablaAlumnos.removeAll(i);
+        }*/
+       limpiarTabla(tablaAlumnos);
+        
         List<Alumno> list = null;
+
+        DefaultTableModel model = null;
+        String[] columnas = {"ID", "NOMBRE", "APELLIDOS", "DNI"};
+
+        model = new DefaultTableModel(null, columnas) {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+
+        };
 
         StringBuilder sql = new StringBuilder();
         sql.append("SELECT ")
-                .append("id,")
-                .append("nombre,")
-                .append("dni,")
-                .append("fecha_nacimiento,")
-                .append("peso,")
-                .append("raza ")
-                .append("FROM perros");
+                .append("a.id, ")
+                .append("a.nombre,")
+                .append("a.apellidos,")
+                .append("a.dni ")
+                .append("FROM alumno a ")
+                .append("INNER JOIN notas n on (a.id = n.idalumno) ")
+                .append("INNER JOIN materia m on (n.idmateria= m.id) ")
+                .append("WHERE m.nombremateria=? ");
+
+        System.out.println("Antes de conexion");
 
         try (Connection cn = conexion.conexionDB()) {
             PreparedStatement ps = cn.prepareStatement(sql.toString());
-            ResultSet rs = ps.executeQuery();
+            ps.setString(1, materia);
 
-            list = new ArrayList<>();
-            while (rs.next()) {
-                Alumno alumno = new Alumno();
+            System.out.println("conectando");
 
-                alumno.setId(rs.getInt(1));
-                alumno.setNombre(rs.getString(2));
-                alumno.setDni(rs.getString(3));
-                //   alumno.setFecha_nacimiento(LocalDate.parse(rs.getString(4)));
-                //  alumno.setPeso(rs.getFloat(5));
-                //  alumno.setRaza(rs.getString(6));
+            try (ResultSet rs = ps.executeQuery();) {
 
-                list.add(alumno);
+                list = new ArrayList<>();
+
+                System.out.println("conectando");
+
+                while (rs.next()) {
+                    Alumno alumno = new Alumno();
+                    alumno.setId(rs.getInt("id"));
+                    alumno.setNombre(rs.getString("nombre"));
+                    alumno.setApellidos(rs.getString("apellidos"));
+                    alumno.setDni(rs.getString("dni"));
+
+                    String[] datos = {String.valueOf(alumno.getId()), alumno.getNombre(), alumno.getApellidos(), alumno.getDni()};
+
+                    // System.out.println(String.valueOf(alumno.getId()) + " " + alumno.getNombre());
+                    list.add(alumno);
+                    model.addRow(datos);
+
+                    // System.out.println("datos");
+                    tablaAlumnos.setModel(model);
+                }
+
+            } catch (Exception e) {
+                message = e.getMessage();
             }
+
         } catch (SQLException e) {
             message = e.getMessage();
         }
-        return list;
+
+        return message;
     }
 
     //obtener donde se guardaran los cambios
@@ -137,7 +187,7 @@ public class DaoAlumnoImpl implements DaoAlumno {
             return midirectorio;
         }
     }
-    
+
     //hacer combobox con materias de docente respectivo
     @Override
     public void comboBoxMaterias(Registro_Alumno vista_alumno, String docente) {
@@ -163,9 +213,9 @@ public class DaoAlumnoImpl implements DaoAlumno {
 
     @Override
     public String getIdAlumno(String dni) {
-       // Perros perro = new Perros();
+        // Perros perro = new Perros();
 
-       String id=null;
+        String id = null;
         StringBuilder sql = new StringBuilder();
         sql.append("SELECT ")
                 .append("id ")
@@ -177,11 +227,11 @@ public class DaoAlumnoImpl implements DaoAlumno {
             ps.setString(1, dni);
             try (ResultSet rs = ps.executeQuery()) {
 
-                if (rs.next()) {         
-                   id =  rs.getString("id");    
+                if (rs.next()) {
+                    id = rs.getString("id");
 
                 } else {
-                    id= null;
+                    id = null;
                 }
 
             } catch (SQLException e) {
@@ -193,14 +243,13 @@ public class DaoAlumnoImpl implements DaoAlumno {
             message = e.getMessage();
             System.out.println("Error 1 getIdAlumno" + message);
         }
-        
+
         return id;
     }
 
-    
     @Override
     public boolean existeAlumno(Alumno alumno) {
-       //Alumno perro = new Perros();
+        //Alumno perro = new Perros();
         StringBuilder sql = new StringBuilder();
         sql.append("SELECT ")
                 .append("id ")
@@ -226,7 +275,73 @@ public class DaoAlumnoImpl implements DaoAlumno {
             message = e.getMessage();
         }
         return false;
-     
+
     }
+
+    @Override
+    public String listarTodosAlumnos(JTable tabla) {
+
+        DefaultTableModel model = null;
+        String[] columnas = {"ID", "NOMBRE", "APELLIDOS", "DNI"};
+
+        model = new DefaultTableModel(null, columnas) {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+
+        };
+        tabla.setModel(model);
+
+        StringBuilder sql = new StringBuilder();
+        sql.append("SELECT ")
+                .append("id,")
+                .append("nombre,")
+                .append("apellidos,")
+                .append("dni,")
+                .append("genero ")
+                .append("FROM alumno");
+
+        try (Connection cn = conexion.conexionDB()) {
+            PreparedStatement ps = cn.prepareStatement(sql.toString());
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                Alumno alumno = new Alumno();
+
+                alumno.setId(rs.getInt("id"));
+                alumno.setNombre(rs.getString("nombre"));
+                alumno.setApellidos(rs.getString("apellidos"));
+                alumno.setDni(rs.getString("dni"));
+
+                String[] datos = {String.valueOf(alumno.getId()), alumno.getNombre(), alumno.getApellidos(), alumno.getDni()};
+
+                model.addRow(datos);
+                
+
+                // System.out.println("datos");
+            }
+
+            tabla.setModel(model);
+        } catch (SQLException e) {
+            message = e.getMessage();
+        }
+
+        return message;
+    }
+    
+    public void limpiarTabla(JTable tabla){
+        String[] columnas = {"ID", "NOMBRE", "APELLIDOS", "DNI"};
+        DefaultTableModel model = new DefaultTableModel(null, columnas);
+       
+        tabla.setModel(model);
+        int numDatos = model.getRowCount();
+        while (  numDatos >1) {
+            model.removeRow(1);
+        }
+       
+    }
+    
+    //https://www.youtube.com/watch?v=e6NQDcCUAZY
 
 }

@@ -3,6 +3,7 @@ package modelo.dao;
 
 
 import java.util.List;
+import javax.swing.JTable;
 import modelo.dto.Alumno;
 import vista.Registro_Alumno;
 
@@ -10,7 +11,8 @@ public interface DaoAlumno {
     
     public String insertarAlumno(Alumno alumno) ;
     
-    public List<Alumno> listarAlumnos(String materia);
+    //listar alumnos según materia
+    public String listarAlumnos(String materia, JTable tablaAlumnos);
     
     //llebar combo box materias de la vista Registro_Alumno
     public void comboBoxMaterias(Registro_Alumno vista_alumno, String docente);
@@ -21,6 +23,9 @@ public interface DaoAlumno {
     
    //Saber si el alumno ya fue instanciado
     public boolean existeAlumno(Alumno alumno);
+    
+    
+    public String listarTodosAlumnos(JTable tabla);
     
     
 }

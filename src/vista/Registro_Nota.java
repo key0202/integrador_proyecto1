@@ -29,7 +29,7 @@ public class Registro_Nota extends javax.swing.JDialog {
         txtApellidos = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        txtDNI = new javax.swing.JTextField();
+        txtdni = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         tablaAsistencia = new javax.swing.JTable();
         jLabel8 = new javax.swing.JLabel();
@@ -39,6 +39,7 @@ public class Registro_Nota extends javax.swing.JDialog {
         comboMateria = new javax.swing.JComboBox<>();
         jLabel10 = new javax.swing.JLabel();
         txtNota = new javax.swing.JTextField();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -53,10 +54,10 @@ public class Registro_Nota extends javax.swing.JDialog {
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(250, 250, 250)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addContainerGap(351, Short.MAX_VALUE)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(396, Short.MAX_VALUE))
+                .addGap(345, 345, 345))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -66,7 +67,7 @@ public class Registro_Nota extends javax.swing.JDialog {
                 .addContainerGap(19, Short.MAX_VALUE))
         );
 
-        getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 710, 60));
+        getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 60));
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -81,7 +82,7 @@ public class Registro_Nota extends javax.swing.JDialog {
         jLabel4.setText("Nombre");
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 240, -1, -1));
 
-        comboTipoExamen.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "PC1", "PC2", "PC3", "Examen Final" }));
+        comboTipoExamen.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "PC1", "PC2", "PC3", "ExamenFinal" }));
         jPanel1.add(comboTipoExamen, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 130, 130, -1));
         jPanel1.add(txtApellidos, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 290, 130, -1));
 
@@ -90,7 +91,7 @@ public class Registro_Nota extends javax.swing.JDialog {
 
         jLabel6.setText("Apellidos");
         jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 300, -1, -1));
-        jPanel1.add(txtDNI, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 350, 130, -1));
+        jPanel1.add(txtdni, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 350, 130, -1));
 
         tablaAsistencia.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -102,12 +103,12 @@ public class Registro_Nota extends javax.swing.JDialog {
         ));
         jScrollPane1.setViewportView(tablaAsistencia);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 110, 360, 460));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 110, 360, 460));
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(0, 204, 255));
         jLabel8.setText("Lista de Registro de Notas");
-        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 50, -1, -1));
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 50, -1, -1));
 
         jLabel9.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(0, 204, 255));
@@ -115,22 +116,33 @@ public class Registro_Nota extends javax.swing.JDialog {
         jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 50, -1, -1));
 
         btnGuardar.setText("Guardar");
+        btnGuardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGuardarActionPerformed(evt);
+            }
+        });
         jPanel1.add(btnGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 520, 90, 50));
 
         btnRegresar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/regresar.png"))); // NOI18N
         jPanel1.add(btnRegresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 520, 90, 50));
 
-        comboMateria.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jPanel1.add(comboMateria, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 190, 130, -1));
 
         jLabel10.setText("Nota");
         jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 410, -1, -1));
         jPanel1.add(txtNota, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 410, 130, -1));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, 710, 620));
+        jButton1.setText("Exportar");
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 110, 80, 70));
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, 760, 620));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnGuardarActionPerformed
 
 
     public static void main(String args[]) {
@@ -178,6 +190,7 @@ public class Registro_Nota extends javax.swing.JDialog {
     public javax.swing.JButton btnRegresar;
     public javax.swing.JComboBox<String> comboMateria;
     public javax.swing.JComboBox<String> comboTipoExamen;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
@@ -192,8 +205,8 @@ public class Registro_Nota extends javax.swing.JDialog {
     private javax.swing.JScrollPane jScrollPane1;
     public javax.swing.JTable tablaAsistencia;
     public javax.swing.JTextField txtApellidos;
-    public javax.swing.JTextField txtDNI;
     public javax.swing.JTextField txtNombre;
     public javax.swing.JTextField txtNota;
+    public javax.swing.JTextField txtdni;
     // End of variables declaration//GEN-END:variables
 }

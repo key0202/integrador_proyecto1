@@ -37,10 +37,8 @@ public class MenuPrincipal extends javax.swing.JFrame {
         txtUsuario = new javax.swing.JLabel();
         txtNombreProfesor1 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu2 = new javax.swing.JMenu();
-        jMenuItem3 = new javax.swing.JMenuItem();
-        jMenu3 = new javax.swing.JMenu();
-        jMenuItem2 = new javax.swing.JMenuItem();
+        menuSesion = new javax.swing.JMenu();
+        menuItemCerrarSesion = new javax.swing.JMenuItem();
 
         jMenu5.setText("jMenu5");
 
@@ -55,7 +53,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
         jPanel3.setBackground(new java.awt.Color(255, 51, 51));
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Sistema de Control de Notas y Asistencias de Alumnos");
@@ -146,19 +144,12 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 550, 670));
 
-        jMenu2.setText("Archivos");
+        menuSesion.setText("Sesion");
 
-        jMenuItem3.setText("Exportar ");
-        jMenu2.add(jMenuItem3);
+        menuItemCerrarSesion.setText("Cerrar sesion");
+        menuSesion.add(menuItemCerrarSesion);
 
-        jMenuBar1.add(jMenu2);
-
-        jMenu3.setText("Sesion");
-
-        jMenuItem2.setText("Cerrar sesion");
-        jMenu3.add(jMenuItem2);
-
-        jMenuBar1.add(jMenu3);
+        jMenuBar1.add(menuSesion);
 
         setJMenuBar(jMenuBar1);
 
@@ -211,16 +202,14 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu5;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
+    public javax.swing.JMenuItem menuItemCerrarSesion;
+    public javax.swing.JMenu menuSesion;
     public javax.swing.JLabel txtNombreProfesor;
     public javax.swing.JLabel txtNombreProfesor1;
     public javax.swing.JLabel txtUsuario;
