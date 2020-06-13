@@ -31,6 +31,8 @@ public class ControladorAlumno implements ActionListener, ItemListener, MouseLis
     private DaoMateria daoMateria;
     private DaoNotas daoNotas;
     public String materia;
+    
+    //DTO
     Alumno alumno = null;
 
     //jframes a los que se dirigira
@@ -134,7 +136,7 @@ public class ControladorAlumno implements ActionListener, ItemListener, MouseLis
         if (e.getSource() == vista_alumno.btnListaAlumnos) {
 
             listaAlumnos.setVisible(true);
-            System.out.println("llamando");
+            listaAlumnos.setLocationRelativeTo(null);
             vista_alumno.setEnabled(false);
 
             daoAlumno = new DaoAlumnoImpl();

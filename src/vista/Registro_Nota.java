@@ -39,7 +39,7 @@ public class Registro_Nota extends javax.swing.JDialog {
         comboMateria = new javax.swing.JComboBox<>();
         jLabel10 = new javax.swing.JLabel();
         txtNota = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        btnExportarTabla = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -132,8 +132,8 @@ public class Registro_Nota extends javax.swing.JDialog {
         jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 410, -1, -1));
         jPanel1.add(txtNota, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 410, 130, -1));
 
-        jButton1.setText("Exportar");
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 110, 80, 70));
+        btnExportarTabla.setText("Exportar");
+        jPanel1.add(btnExportarTabla, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 110, 80, 70));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, 760, 620));
 
@@ -186,11 +186,11 @@ public class Registro_Nota extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    public javax.swing.JButton btnExportarTabla;
     public javax.swing.JButton btnGuardar;
     public javax.swing.JButton btnRegresar;
     public javax.swing.JComboBox<String> comboMateria;
     public javax.swing.JComboBox<String> comboTipoExamen;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
