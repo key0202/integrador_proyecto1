@@ -57,13 +57,12 @@ public class DaoNotasImpl implements DaoNotas {
     public void getNotasMateria(int idmateria) {
 
     }
-    
 
     @Override
     public String comboMateria(JComboBox cbMateria) {
 
         cbMateria.removeAllItems();
-       
+
         StringBuilder sql = new StringBuilder();
         sql.append("SELECT ")
                 .append("nombremateria ")
@@ -73,23 +72,22 @@ public class DaoNotasImpl implements DaoNotas {
             PreparedStatement ps = cn.prepareStatement(sql.toString());
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                String nombre = (rs.getString("nombremateria"));       
+                String nombre = (rs.getString("nombremateria"));
                 cbMateria.addItem(nombre);
             }
- 
+
         } catch (SQLException e) {
             message = e.getMessage();
         }
 
         return message;
     }
- 
-    
+
     @Override
     public String listarAlumnos(String materia, JTable tablaAlumnos) {
 
         limpiarTabla(tablaAlumnos);
-        
+
         List<Alumno> list = null;
 
         DefaultTableModel model = null;
@@ -113,13 +111,9 @@ public class DaoNotasImpl implements DaoNotas {
                 .append("INNER JOIN materia m on (n.idmateria= m.id) ")
                 .append("WHERE m.nombremateria=? ");
 
-        
-
         try (Connection cn = conexion.conexionDB()) {
             PreparedStatement ps = cn.prepareStatement(sql.toString());
             ps.setString(1, materia);
-
-            
 
             try (ResultSet rs = ps.executeQuery();) {
 
@@ -134,7 +128,7 @@ public class DaoNotasImpl implements DaoNotas {
                     alumno.setApellidos(rs.getString("apellidos"));
                     alumno.setDni(rs.getString("dni"));
 
-                    String[] datos = { alumno.getNombre(), alumno.getApellidos(), alumno.getDni(),""};
+                    String[] datos = {alumno.getNombre(), alumno.getApellidos(), alumno.getDni(), ""};
 
                     // System.out.println(String.valueOf(alumno.getId()) + " " + alumno.getNombre());
                     list.add(alumno);
@@ -153,19 +147,69 @@ public class DaoNotasImpl implements DaoNotas {
         }
 
         return message;
-        
+
     }
-    
-    public void limpiarTabla(JTable tabla){
-        String[] columnas = {"NOMBRE", "APELLIDOS", "DNI","NOTA"};
+
+    public void limpiarTabla(JTable tabla) {
+        String[] columnas = {"NOMBRE", "APELLIDOS", "DNI", "NOTA"};
         DefaultTableModel model = new DefaultTableModel(null, columnas);
-       
+
         tabla.setModel(model);
         int numDatos = model.getRowCount();
-        while (  numDatos >1) {
+        while (numDatos > 1) {
             model.removeRow(1);
         }
-       
+
+    }
+
+    /*UPDATE notas set pc3 =11 
+    where idalumno=4 and idmateria=9;
+     */
+    //INSERTAR PC1,PC2,PC O EX SEGÚN MATERIA Y ALUMNO
+    @Override
+    public String insertarNotasDatos(String idalumno, String idmateria, String tipoExamen, double nota) {
+        int ida = Integer.parseInt(idalumno);
+        int idm = Integer.parseInt(idmateria);
+        StringBuilder sql = new StringBuilder();
+        //sql.append("");
+
+        if (tipoExamen.equalsIgnoreCase("PC1")) {
+            sql.append("UPDATE notas SET ")
+                    .append("PC1 = ? ")
+                    .append("WHERE idalumno = ? AND idmateria = ? ");
+
+        } else if (tipoExamen.equalsIgnoreCase("PC2")) {
+            sql.append("UPDATE notas SET ")
+                    .append("PC2 = ? ")
+                    .append("WHERE idalumno = ? AND idmateria = ? ");
+
+        } else if (tipoExamen.equalsIgnoreCase("PC3")) {
+            sql.append("UPDATE notas SET ")
+                    .append("PC3 = ? ")
+                    .append("WHERE idalumno = ? AND idmateria = ? ");
+            
+        } else if (tipoExamen.equalsIgnoreCase("ExamenFinal")) {
+            sql.append("UPDATE notas SET ")
+                    .append("ExamenFinal = ? ")
+                    .append("WHERE idalumno = ? AND idmateria = ? ");
+        }
+
+        try (Connection cn = conexion.conexionDB()) {
+
+            PreparedStatement ps = cn.prepareStatement(sql.toString());
+            ps.setDouble(1, nota);
+            ps.setInt(2, ida);
+            ps.setInt(3, idm);
+
+            int ctos = ps.executeUpdate();
+            if (ctos == 0) {
+                message = "No se pudo actualizar";
+            }
+        } catch (SQLException e) {
+            message = e.getMessage() + " erro notas";
+        }
+
+        return message;
     }
 
 }

@@ -134,7 +134,7 @@
                 <StringItem index="0" value="PC1"/>
                 <StringItem index="1" value="PC2"/>
                 <StringItem index="2" value="PC3"/>
-                <StringItem index="3" value="Examen Final"/>
+                <StringItem index="3" value="ExamenFinal"/>
               </StringArray>
             </Property>
           </Properties>

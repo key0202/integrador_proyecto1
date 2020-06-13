@@ -58,7 +58,6 @@ public class DaoAlumnoImpl implements DaoAlumno {
             //  ps.setString(5, alumno.getRaza());
 
             int ctos = ps.executeUpdate();
-
             if (ctos == 0) {
                 message = "cero filas insertadas";
             }

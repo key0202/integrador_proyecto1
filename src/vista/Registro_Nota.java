@@ -81,7 +81,7 @@ public class Registro_Nota extends javax.swing.JDialog {
         jLabel4.setText("Nombre");
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 240, -1, -1));
 
-        comboTipoExamen.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "PC1", "PC2", "PC3", "Examen Final" }));
+        comboTipoExamen.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "PC1", "PC2", "PC3", "ExamenFinal" }));
         jPanel1.add(comboTipoExamen, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 130, 130, -1));
         jPanel1.add(txtApellidos, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 290, 130, -1));
 

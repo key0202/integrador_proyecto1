@@ -7,7 +7,7 @@ import javax.swing.JTable;
 
 public interface DaoNotas {
     
-    public String insertarNotasFK(String idalumno, String imateria);
+    public String insertarNotasFK(String idalumno, String idmateria);
 
     
     
@@ -19,4 +19,7 @@ public interface DaoNotas {
     
     //LISTAR ALUMNOS SEGÚN MATERIA
     public String listarAlumnos(String materia, JTable tablaAlumnos);
+    
+    //INSERTAR LAS NOTAS PC1-PC2-PC3
+    public String insertarNotasDatos(String idalumno, String idmateria, String tipoExamen, double nota);
 }

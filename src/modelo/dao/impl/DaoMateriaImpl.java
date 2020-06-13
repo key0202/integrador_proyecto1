@@ -154,7 +154,6 @@ public class DaoMateriaImpl implements DaoMateria {
             message = e.getMessage();
             System.out.println("Error 1 getIdMateria" + message);
         }
-        
         return id;
     }
 
