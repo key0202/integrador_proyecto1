@@ -7,9 +7,11 @@ import java.awt.event.MouseListener;
 import java.io.File;
 import javax.swing.JOptionPane;
 import modelo.dao.DaoAlumno;
+import modelo.dao.DaoAsistencia;
 import modelo.dao.DaoMateria;
 import modelo.dao.DaoNotas;
 import modelo.dao.impl.DaoAlumnoImpl;
+import modelo.dao.impl.DaoAsistenciaImpl;
 import modelo.dao.impl.DaoMateriaImpl;
 import modelo.dao.impl.DaoNotasImpl;
 import vista.Login;
@@ -34,6 +36,7 @@ public class ControladorMenu implements ActionListener {
     //Dao de los jframes
     DaoMateria daoMateria = new DaoMateriaImpl();
     DaoAlumno daoAlumno = new DaoAlumnoImpl();
+    DaoAsistencia daoAsistencia = new DaoAsistenciaImpl();
     DaoNotas daoNota = new DaoNotasImpl();
     
 
@@ -41,7 +44,7 @@ public class ControladorMenu implements ActionListener {
     String docente = Controlador.docente;
 
     //direccion donde se crearan los archivos txt
-    public static String username = "MiKeyla";
+    public static String username = "DAVID";
     public static String destino = "Desktop"; // Desktop, Documents, etc
     public static String direccion = "C:/Users/" + username + "/" + destino + "/TeachTools_";
 
@@ -104,8 +107,9 @@ public class ControladorMenu implements ActionListener {
             File directorio = new File(direccion + docente);
             if (directorio.exists()) {
                 //llamamos al controlador del jframe al que nos dirigimos
-                JOptionPane.showMessageDialog(null, "Registrar asistencia");
-                //menuPrincipal.dispose();
+                ControladorAsistencia ctrlAsistencia = new ControladorAsistencia(daoAsistencia, registroAsistencia);
+                ctrlAsistencia.iniciar();
+                menuPrincipal.dispose();
             } else {
                 JOptionPane.showMessageDialog(null, "Primero se debe registrar las materias " + docente);
             }
@@ -126,7 +130,8 @@ public class ControladorMenu implements ActionListener {
         
         //BOTON PARA CERRAR SESIÓN Y VISUALIZAR EL LOGIN
         if(e.getSource()== menuPrincipal.menuItemCerrarSesion){     
-            menuPrincipal.dispose();
+            //menuPrincipal.dispose();
+            System.exit(0);
           //  Login login = new Login();
             //login.setVisible(true);
         }

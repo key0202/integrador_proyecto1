@@ -12,8 +12,8 @@ public class Notas {
     private double nota3;
     private double ef;
     private double promedio;
-    
-    
+    private String materia;
+    private String prueba;
     
 
     public Notas() {
@@ -65,6 +65,22 @@ public class Notas {
 
     public void setPromedio(double promedio) {
         this.promedio = promedio;
+    }
+
+    public String getMateria() {
+        return materia;
+    }
+
+    public void setMateria(String materia) {
+        this.materia = materia;
+    }
+
+    public String getPrueba() {
+        return prueba;
+    }
+
+    public void setPrueba(String prueba) {
+        this.prueba = prueba;
     }
     
     

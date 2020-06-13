@@ -1,8 +1,12 @@
 package modelo.dao.impl;
 
 import static controlador.ControladorMenu.direccion;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -101,12 +105,12 @@ WHERE m.nombremateria='arte'
     public String listarAlumnos(String materia, JTable tablaAlumnos) {
 
         //tablaAlumnos.removeAll();
-       /* int numDatos = tablaAlumnos.getRowCount();
+        /* int numDatos = tablaAlumnos.getRowCount();
         for (int i = 0; i < numDatos; i++) {
             tablaAlumnos.removeAll(i);
         }*/
-       limpiarTabla(tablaAlumnos);
-        
+        limpiarTabla(tablaAlumnos);
+
         List<Alumno> list = null;
 
         DefaultTableModel model = null;
@@ -186,6 +190,28 @@ WHERE m.nombremateria='arte'
             String midirectorio = direccion + docente + "/materias.txt";
             return midirectorio;
         }
+    }
+
+    //donde se guardaran los cambios
+    public String directorioDestino(String docente, String materia) {
+        File directorio = new File(direccion + docente); // "C:/Users/DAVID/Desktop/TeachTools_david"
+
+        if (directorio.exists()) {//la carpeta del docente ya existe            
+            directorio.mkdirs();
+            String midirectorio = direccion + docente + "/alumnos_" + materia + ".txt";
+            return midirectorio;
+
+        } else {
+            directorio.mkdirs();
+            String midirectorio = direccion + docente + "/alumnos_" + materia + ".txt";
+            return midirectorio;
+        }
+    }
+
+    //eliminar archivo txt
+    public void borrarTxt(String midirectorio) {
+        File directoriodelete = new File(midirectorio);
+        directoriodelete.delete();
     }
 
     //hacer combobox con materias de docente respectivo
@@ -317,7 +343,6 @@ WHERE m.nombremateria='arte'
                 String[] datos = {String.valueOf(alumno.getId()), alumno.getNombre(), alumno.getApellidos(), alumno.getDni()};
 
                 model.addRow(datos);
-                
 
                 // System.out.println("datos");
             }
@@ -329,19 +354,49 @@ WHERE m.nombremateria='arte'
 
         return message;
     }
-    
-    public void limpiarTabla(JTable tabla){
+
+    public void limpiarTabla(JTable tabla) {
         String[] columnas = {"ID", "NOMBRE", "APELLIDOS", "DNI"};
         DefaultTableModel model = new DefaultTableModel(null, columnas);
-       
+
         tabla.setModel(model);
         int numDatos = model.getRowCount();
-        while (  numDatos >1) {
+        while (numDatos > 1) {
             model.removeRow(1);
         }
-       
+
     }
-    
+
     //https://www.youtube.com/watch?v=e6NQDcCUAZY
+    @Override
+    public void exportarAlumnos(Alumno alumno, Registro_Alumno vista_alumno, String docente) {
+        borrarTxt(directorioDestino(docente, alumno.getMateria()));
+        try {
+            FileWriter file = new FileWriter(directorioDestino(docente, alumno.getMateria()), true);
+            BufferedWriter bw = new BufferedWriter(file);
+            PrintWriter pw = new PrintWriter(bw);
+            pw.println("ID\t\tNOMBRE\t\tAPELLIDOS\t\tDNI");
+            for (int i = 0; i < vista_alumno.tablaAlumnos.getRowCount(); i++) { //filas
+                for (int j = 0; j < vista_alumno.tablaAlumnos.getColumnCount(); j++) {//columnas
+                    //bw.write(vista_alumno.tablaAlumnos.getValueAt(i, j).toString() + "\t");
+                    //bw.write(vista_alumno.tablaAlumnos.getModel().getValueAt(i, j) + "\t");
+                    pw.print(vista_alumno.tablaAlumnos.getModel().getValueAt(i, j) + "\t\t");
+                }
+                bw.write("\n________________________________________________\n");
+                //bw.newLine();
+            }
+            pw.close();
+            //bw.close();
+            //file.close();
+
+            //PrintWriter pw = new PrintWriter(bw);
+            //pw.println(asistencia.getStringFecha() + "|" + asistencia.getNombre() + " " + asistencia.getApellidos() + "|" + asistencia.getDni() + "|" + asistencia.getTipo());
+            //pw.close();
+            JOptionPane.showMessageDialog(null, "Registro de alumnos guardado en " + direccion + docente);
+
+        } catch (IOException error) {
+            JOptionPane.showMessageDialog(null, "Error exportarAlumnos(): " + error);
+        }
+    }
 
 }

@@ -1,5 +1,11 @@
 package modelo.dao.impl;
 
+import static controlador.ControladorMenu.direccion;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -9,19 +15,61 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import modelo.Conexion;
 import modelo.dao.DaoNotas;
 import modelo.dto.Alumno;
+import modelo.dto.Notas;
+import vista.Registro_Nota;
 
 public class DaoNotasImpl implements DaoNotas {
 
+    Registro_Nota vista_nota;
+    Notas notas;
     private Conexion conexion;
     private String message;
 
     public DaoNotasImpl() {
         this.conexion = new Conexion();
+    }
+
+    //obtener donde se guardaran los cambios
+    public String midirectorio(String docente) {
+        File directorio = new File(direccion + docente); // "C:/Users/DAVID/Desktop/materias_david"
+
+        if (directorio.exists()) {//la carpeta del docente ya existe
+            String midirectorio = direccion + docente + "/materias.txt";
+            return midirectorio;
+
+        } else {
+            directorio.mkdirs();
+            String midirectorio = direccion + docente + "/materias.txt";
+            return midirectorio;
+        }
+    }
+
+    //donde se guardaran los cambios
+    public String directorioDestino(String docente, String materia, String prueba) {
+        File directorio = new File(direccion + docente); // "C:/Users/DAVID/Desktop/TeachTools_david"
+
+        if (directorio.exists()) {//la carpeta del docente ya existe            
+            directorio.mkdirs();
+            String midirectorio = direccion + docente + "/notas_" + materia + "_" + prueba + ".txt";
+            return midirectorio;
+
+        } else {
+            directorio.mkdirs();
+            String midirectorio = direccion + docente + "/notas_" + materia + "_" + prueba + ".txt";
+            return midirectorio;
+        }
+    }
+
+    //eliminar archivo txt
+    public void borrarTxt(String midirectorio) {
+        File directoriodelete = new File(midirectorio);
+        directoriodelete.delete();
     }
 
     @Override
@@ -120,8 +168,7 @@ public class DaoNotasImpl implements DaoNotas {
 
                 list = new ArrayList<>();
 
-             //   System.out.println("conectando");
-
+                //   System.out.println("conectando");
                 while (rs.next()) {
                     Alumno alumno = new Alumno();
                     alumno.setId(rs.getInt(1));
@@ -132,27 +179,26 @@ public class DaoNotasImpl implements DaoNotas {
                     String PC2 = String.valueOf(rs.getDouble("PC2"));
                     String PC3 = String.valueOf(rs.getDouble("PC3"));
                     String ExamenFinal = String.valueOf(rs.getDouble("ExamenFinal"));
-                  //  String[] datos = new String[3];
-                 //   System.out.println("conectando 2");
+                    //  String[] datos = new String[3];
+                    //   System.out.println("conectando 2");
                     System.out.println(PC1 + " " + PC2 + " " + PC3);
-                    String nota="";
-                    
-                        if( tipoExamen.equalsIgnoreCase("PC1")){
-                            nota=PC1;
-                        }else if(tipoExamen.equalsIgnoreCase("PC2")){
-                            nota=PC2;
-                        }else if(tipoExamen.equalsIgnoreCase("PC3")){
-                            nota=PC3;
-                        }else if(tipoExamen.equalsIgnoreCase("ExamenFinal")){
-                            nota=ExamenFinal;
-                        }
-        
-                  //  System.out.println("Entra al tbla " + datos);
+                    String nota = "";
 
+                    if (tipoExamen.equalsIgnoreCase("PC1")) {
+                        nota = PC1;
+                    } else if (tipoExamen.equalsIgnoreCase("PC2")) {
+                        nota = PC2;
+                    } else if (tipoExamen.equalsIgnoreCase("PC3")) {
+                        nota = PC3;
+                    } else if (tipoExamen.equalsIgnoreCase("ExamenFinal")) {
+                        nota = ExamenFinal;
+                    }
+
+                    //  System.out.println("Entra al tbla " + datos);
                     String[] datos1 = {alumno.getNombre(), alumno.getApellidos(), alumno.getDni(), nota};
                     // System.out.println(String.valueOf(alumno.getId()) + " " + alumno.getNombre());
-                    
-                   // System.out.println(datos1);
+
+                    // System.out.println(datos1);
                     list.add(alumno);
                     model.addRow(datos1);
 
@@ -232,6 +278,29 @@ public class DaoNotasImpl implements DaoNotas {
         }
 
         return message;
+    }
+
+    @Override
+    public void exportarNotas(Notas notas, Registro_Nota vista_nota, String docente) {
+        borrarTxt(directorioDestino(docente, notas.getMateria(), notas.getPrueba()));
+        try {
+            FileWriter file = new FileWriter(directorioDestino(docente, notas.getMateria(), notas.getPrueba()), true);
+            BufferedWriter bw = new BufferedWriter(file);
+            PrintWriter pw = new PrintWriter(bw);
+            pw.println("NOMBRE\t\tAPELLIDOS\t\tDNI\t\tNOTA");
+            for (int i = 0; i < vista_nota.tablaAsistencia.getRowCount(); i++) { //filas
+                for (int j = 0; j < vista_nota.tablaAsistencia.getColumnCount(); j++) {//columnas
+                    pw.print(vista_nota.tablaAsistencia.getModel().getValueAt(i, j) + "\t\t");
+                }
+                bw.write("\n________________________________________________\n");
+            }
+            pw.close();
+
+            JOptionPane.showMessageDialog(null, "Registro de notas guardado en " + direccion + docente);
+
+        } catch (IOException error) {
+            JOptionPane.showMessageDialog(null, "Error exportarAlumnos(): " + error);
+        }
     }
 
 }

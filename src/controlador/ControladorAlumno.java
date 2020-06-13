@@ -19,11 +19,11 @@ import vista.Lista_Alumnos;
 import vista.MenuPrincipal;
 import vista.Registro_Alumno;
 
-public class ControladorAlumno implements ActionListener,ItemListener, MouseListener {
+public class ControladorAlumno implements ActionListener, ItemListener, MouseListener {
 
     private DaoAlumno daoAlumno;//dao
     private Registro_Alumno vista_alumno;//vista
-    
+
     //VISTA  LISTA_ALUMNOS PARA LISTAR TODOS LOS ALUMNOS    
     private Lista_Alumnos listaAlumnos = new Lista_Alumnos();
 
@@ -31,6 +31,8 @@ public class ControladorAlumno implements ActionListener,ItemListener, MouseList
     private DaoMateria daoMateria;
     private DaoNotas daoNotas;
     public String materia;
+    
+    //DTO
     Alumno alumno = null;
 
     //jframes a los que se dirigira
@@ -56,10 +58,11 @@ public class ControladorAlumno implements ActionListener,ItemListener, MouseList
         this.vista_alumno.btnAgregar.addActionListener(this);
         this.vista_alumno.btnLimpiar.addActionListener(this);
         this.vista_alumno.comboMateria.addItemListener(this);
-        
+        this.vista_alumno.btnExportarTabla.addActionListener(this);
+
         //Ir al Jdialog Lista ALumnos
-        this.vista_alumno.btnListaAlumnos.addActionListener(this); 
-        
+        this.vista_alumno.btnListaAlumnos.addActionListener(this);
+
         //setear los datos de ls tabla de la vista Lista Alumnos a Registro Alumnos
         this.listaAlumnos.tablaListaAlumnos.addMouseListener(this);
     }
@@ -70,10 +73,7 @@ public class ControladorAlumno implements ActionListener,ItemListener, MouseList
         vista_alumno.txtApellidos.setText("");
         vista_alumno.txtDNI.setText("");
     }
-    
-    
 
-    
     //EVENTOS DE LOS BOTONES DE REGISTRO ALUMNO
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -86,13 +86,13 @@ public class ControladorAlumno implements ActionListener,ItemListener, MouseList
             alumno.setDni(vista_alumno.txtDNI.getText().trim());
             alumno.setGenero(vista_alumno.comboGenero.getSelectedItem().toString());
             //  alumno.setFechaNacimiento(vista_alumno.fechaNacimiento.getDate());
-            
+
             //obtiene la materia del combobox de la vista Registro_Alumno
             materia = vista_alumno.comboMateria.getSelectedItem().toString();
             daoMateria = new DaoMateriaImpl();
 
-            if (daoAlumno.existeAlumno(alumno)) { 
-                
+            if (daoAlumno.existeAlumno(alumno)) {
+
                 daoNotas = new DaoNotasImpl();
                 //Ahora se debe crear la relación entre Alumno y Materia a través de la tabla Notas
                 String idalumno = daoAlumno.getIdAlumno(alumno.getDni());
@@ -100,16 +100,15 @@ public class ControladorAlumno implements ActionListener,ItemListener, MouseList
 
                 String message = daoNotas.insertarNotasFK(idalumno, idmateria);
 
-              //  System.out.println("IDAlumno es" + idalumno);
-               // System.out.println("IDMateria es" + idmateria);
-
+                //  System.out.println("IDAlumno es" + idalumno);
+                // System.out.println("IDMateria es" + idmateria);
                 JOptionPane.showMessageDialog(null, "Alumno existente Agregado");
 
             } else {
-                
+
                 String res = daoAlumno.insertarAlumno(alumno);
-               // System.out.println("Es " + res);
-              //  System.out.println("Materia " + materia);
+                // System.out.println("Es " + res);
+                //  System.out.println("Materia " + materia);
 
                 //Si res es nulo significa que ha sido insertado de manera correcta 
                 if (res == null) {
@@ -132,23 +131,20 @@ public class ControladorAlumno implements ActionListener,ItemListener, MouseList
                 }
             }
         }
-        
+
         //BOTON LISTAR TODOS ALUMNOS
-        if(e.getSource() == vista_alumno.btnListaAlumnos){
-            
-             
+        if (e.getSource() == vista_alumno.btnListaAlumnos) {
+
             listaAlumnos.setVisible(true);
-            System.out.println("llamando");
+            listaAlumnos.setLocationRelativeTo(null);
             vista_alumno.setEnabled(false);
-  
-            daoAlumno= new DaoAlumnoImpl();
-            
-            daoAlumno.listarTodosAlumnos(listaAlumnos.tablaListaAlumnos); 
-            
+
+            daoAlumno = new DaoAlumnoImpl();
+
+            daoAlumno.listarTodosAlumnos(listaAlumnos.tablaListaAlumnos);
+
         }
-        
-        
-        
+
         //BOTON LIMPIAR
         if (e.getSource() == vista_alumno.btnLimpiar) {
             limpiar();
@@ -160,78 +156,88 @@ public class ControladorAlumno implements ActionListener,ItemListener, MouseList
             ctrlMenu.menuPrincipal.setVisible(true);
             vista_alumno.dispose();
         }
-      
-        
+
+        //BOTON EXPORTAR TABLA DE ALUMNOS DE UN CURSO
+        if (e.getSource() == vista_alumno.btnExportarTabla) {
+            alumno = new Alumno();
+            String materia = (String) vista_alumno.comboMateria.getSelectedItem();
+
+            //si el jtable esta vacio
+            if (vista_alumno.tablaAlumnos.getRowCount() <= 0) {
+                JOptionPane.showMessageDialog(null, "Elija una materia que tenga alumnos");
+            } else {
+                //JOptionPane.showMessageDialog(null, "Exportar tabla");
+                alumno.setMateria(materia);
+                daoAlumno.exportarAlumnos(alumno, vista_alumno, docente);
+            }
+
+        }
+
     }
-    
-    
-    
-        //EVENTO DEL COMBO BOX
+
+    //EVENTO DEL COMBO BOX
     @Override
     public void itemStateChanged(ItemEvent e) {
-        
-        if(e.getSource()== vista_alumno.comboMateria){
-            
-           // JOptionPane.showMessageDialog(null, "selecionado primero" + vista_alumno.comboMateria.getSelectedItem().toString());
+
+        if (e.getSource() == vista_alumno.comboMateria) {
+
+            // JOptionPane.showMessageDialog(null, "selecionado primero" + vista_alumno.comboMateria.getSelectedItem().toString());
             daoAlumno = new DaoAlumnoImpl();
-           // daoAlumno.prueba(vista_alumno.tablaAlumnos);
-            String mes =daoAlumno.listarAlumnos(vista_alumno.comboMateria.getSelectedItem().toString(), vista_alumno.tablaAlumnos);
-           // JOptionPane.showMessageDialog(null, mes);
-           
+            // daoAlumno.prueba(vista_alumno.tablaAlumnos);
+            String mes = daoAlumno.listarAlumnos(vista_alumno.comboMateria.getSelectedItem().toString(), vista_alumno.tablaAlumnos);
+            // JOptionPane.showMessageDialog(null, mes);
+
         }
     }
 
-
     @Override
     public void mouseClicked(MouseEvent e) {
-        
-       /* if(e.getSource() == listaAlumnos.tablaListaAlumnos ){
+
+        /* if(e.getSource() == listaAlumnos.tablaListaAlumnos ){
             System.out.println("Tabla click");
         }*/
-       
-       if(e.getClickCount() > 1){
-          // JOptionPane.showMessageDialog(null, "Evento click");
-           
-           int seleccion = listaAlumnos.tablaListaAlumnos.getSelectedRow();
-          // JOptionPane.showMessageDialog(null, seleccion);
-           String nombre,apellido,dni;
-          //EN LOS JTABLE COMIENZAN DESDE INDICE 0
-           nombre=String.valueOf(listaAlumnos.tablaListaAlumnos.getValueAt(seleccion, 1)) ;
-           apellido=String.valueOf(listaAlumnos.tablaListaAlumnos.getValueAt(seleccion, 2)) ;
-           dni=String.valueOf(listaAlumnos.tablaListaAlumnos.getValueAt(seleccion, 3)) ;
-           
-           //JOptionPane.showMessageDialog(null, nombre);
-           listaAlumnos.dispose();
-           
-           vista_alumno.setEnabled(true);
-           
-           vista_alumno.txtNombre.setText(nombre);
-           vista_alumno.txtApellidos.setText(apellido);
-           vista_alumno.txtDNI.setText(dni);
-           
-       }
-        
-    
+        if (e.getClickCount() > 1) {
+            // JOptionPane.showMessageDialog(null, "Evento click");
+
+            int seleccion = listaAlumnos.tablaListaAlumnos.getSelectedRow();
+            // JOptionPane.showMessageDialog(null, seleccion);
+            String nombre, apellido, dni;
+            //EN LOS JTABLE COMIENZAN DESDE INDICE 0
+            nombre = String.valueOf(listaAlumnos.tablaListaAlumnos.getValueAt(seleccion, 1));
+            apellido = String.valueOf(listaAlumnos.tablaListaAlumnos.getValueAt(seleccion, 2));
+            dni = String.valueOf(listaAlumnos.tablaListaAlumnos.getValueAt(seleccion, 3));
+
+            //JOptionPane.showMessageDialog(null, nombre);
+            listaAlumnos.dispose();
+
+            vista_alumno.setEnabled(true);
+
+            vista_alumno.txtNombre.setText(nombre);
+            vista_alumno.txtApellidos.setText(apellido);
+            vista_alumno.txtDNI.setText(dni);
+
+        }
+
     }
 
     @Override
     public void mousePressed(MouseEvent e) {
-      
+
     }
 
     @Override
     public void mouseReleased(MouseEvent e) {
-        
+
     }
 
     @Override
     public void mouseEntered(MouseEvent e) {
-       
+
     }
 
     @Override
     public void mouseExited(MouseEvent e) {
-       
+
     }
 
 }
