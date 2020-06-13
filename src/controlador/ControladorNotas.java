@@ -108,9 +108,12 @@ public class ControladorNotas implements ActionListener,ItemListener, MouseListe
         if(e.getSource()==vistaRegistroNota.comboMateria){
             
             daoNotas = new DaoNotasImpl();
+            String tipoExamen = vistaRegistroNota.comboTipoExamen.getSelectedItem().toString();
             
-            String res = daoNotas.listarAlumnos(vistaRegistroNota.comboMateria.getSelectedItem().toString(), vistaRegistroNota.tablaAsistencia);
-            System.out.println("res");
+            String res = daoNotas.listarAlumnos(vistaRegistroNota.comboMateria.getSelectedItem().toString(), vistaRegistroNota.tablaAsistencia, tipoExamen);
+            //System.out.println(res);
+            //JOptionPane.showMessageDialog(null, res);
+           // JOptionPane.showMessageDialog(null, tipoExamen);
         }
 
     }

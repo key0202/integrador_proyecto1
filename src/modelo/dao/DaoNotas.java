@@ -18,7 +18,7 @@ public interface DaoNotas {
     
     
     //LISTAR ALUMNOS SEGÚN MATERIA
-    public String listarAlumnos(String materia, JTable tablaAlumnos);
+    public String listarAlumnos(String materia, JTable tablaAlumnos, String tipoExamen);
     
     //INSERTAR LAS NOTAS PC1-PC2-PC3
     public String insertarNotasDatos(String idalumno, String idmateria, String tipoExamen, double nota);

@@ -84,7 +84,7 @@ public class DaoNotasImpl implements DaoNotas {
     }
 
     @Override
-    public String listarAlumnos(String materia, JTable tablaAlumnos) {
+    public String listarAlumnos(String materia, JTable tablaAlumnos, String tipoExamen) {
 
         limpiarTabla(tablaAlumnos);
 
@@ -102,10 +102,11 @@ public class DaoNotasImpl implements DaoNotas {
 
         StringBuilder sql = new StringBuilder();
         sql.append("SELECT ")
-                .append("a.id, ")
-                .append("a.nombre,")
-                .append("a.apellidos,")
-                .append("a.dni ")
+                .append("* ")
+                //  .append("a.id, ")
+                //   .append("a.nombre,")
+                //   .append("a.apellidos,")
+                //   .append("a.dni ")
                 .append("FROM alumno a ")
                 .append("INNER JOIN notas n on (a.id = n.idalumno) ")
                 .append("INNER JOIN materia m on (n.idmateria= m.id) ")
@@ -119,20 +120,41 @@ public class DaoNotasImpl implements DaoNotas {
 
                 list = new ArrayList<>();
 
-                System.out.println("conectando");
+             //   System.out.println("conectando");
 
                 while (rs.next()) {
                     Alumno alumno = new Alumno();
-                    alumno.setId(rs.getInt("id"));
+                    alumno.setId(rs.getInt(1));
                     alumno.setNombre(rs.getString("nombre"));
                     alumno.setApellidos(rs.getString("apellidos"));
                     alumno.setDni(rs.getString("dni"));
+                    String PC1 = String.valueOf(rs.getDouble("PC1"));
+                    String PC2 = String.valueOf(rs.getDouble("PC2"));
+                    String PC3 = String.valueOf(rs.getDouble("PC3"));
+                    String ExamenFinal = String.valueOf(rs.getDouble("ExamenFinal"));
+                  //  String[] datos = new String[3];
+                 //   System.out.println("conectando 2");
+                    System.out.println(PC1 + " " + PC2 + " " + PC3);
+                    String nota="";
+                    
+                        if( tipoExamen.equalsIgnoreCase("PC1")){
+                            nota=PC1;
+                        }else if(tipoExamen.equalsIgnoreCase("PC2")){
+                            nota=PC2;
+                        }else if(tipoExamen.equalsIgnoreCase("PC3")){
+                            nota=PC3;
+                        }else if(tipoExamen.equalsIgnoreCase("ExamenFinal")){
+                            nota=ExamenFinal;
+                        }
+        
+                  //  System.out.println("Entra al tbla " + datos);
 
-                    String[] datos = {alumno.getNombre(), alumno.getApellidos(), alumno.getDni(), ""};
-
+                    String[] datos1 = {alumno.getNombre(), alumno.getApellidos(), alumno.getDni(), nota};
                     // System.out.println(String.valueOf(alumno.getId()) + " " + alumno.getNombre());
+                    
+                   // System.out.println(datos1);
                     list.add(alumno);
-                    model.addRow(datos);
+                    model.addRow(datos1);
 
                     // System.out.println("datos");
                     tablaAlumnos.setModel(model);
@@ -146,7 +168,7 @@ public class DaoNotasImpl implements DaoNotas {
             message = e.getMessage();
         }
 
-        return message;
+        return "error notas " + message;
 
     }
 
@@ -187,7 +209,7 @@ public class DaoNotasImpl implements DaoNotas {
             sql.append("UPDATE notas SET ")
                     .append("PC3 = ? ")
                     .append("WHERE idalumno = ? AND idmateria = ? ");
-            
+
         } else if (tipoExamen.equalsIgnoreCase("ExamenFinal")) {
             sql.append("UPDATE notas SET ")
                     .append("ExamenFinal = ? ")
