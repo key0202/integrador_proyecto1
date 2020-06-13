@@ -11,6 +11,7 @@ public interface DaoAlumno {
     
     public String insertarAlumno(Alumno alumno) ;
     
+    //listar alumnos según materia
     public String listarAlumnos(String materia, JTable tablaAlumnos);
     
     //llebar combo box materias de la vista Registro_Alumno

@@ -318,6 +318,7 @@ WHERE m.nombremateria='arte'
                 String[] datos = {String.valueOf(alumno.getId()), alumno.getNombre(), alumno.getApellidos(), alumno.getDni()};
 
                 model.addRow(datos);
+                
 
                 // System.out.println("datos");
             }
@@ -341,5 +342,7 @@ WHERE m.nombremateria='arte'
         }
        
     }
+    
+    //https://www.youtube.com/watch?v=e6NQDcCUAZY
 
 }

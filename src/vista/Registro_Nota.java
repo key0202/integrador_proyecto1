@@ -29,7 +29,7 @@ public class Registro_Nota extends javax.swing.JDialog {
         txtApellidos = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        txtDNI = new javax.swing.JTextField();
+        txtdni = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         tablaAsistencia = new javax.swing.JTable();
         jLabel8 = new javax.swing.JLabel();
@@ -90,7 +90,7 @@ public class Registro_Nota extends javax.swing.JDialog {
 
         jLabel6.setText("Apellidos");
         jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 300, -1, -1));
-        jPanel1.add(txtDNI, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 350, 130, -1));
+        jPanel1.add(txtdni, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 350, 130, -1));
 
         tablaAsistencia.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -120,7 +120,6 @@ public class Registro_Nota extends javax.swing.JDialog {
         btnRegresar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/regresar.png"))); // NOI18N
         jPanel1.add(btnRegresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 520, 90, 50));
 
-        comboMateria.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jPanel1.add(comboMateria, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 190, 130, -1));
 
         jLabel10.setText("Nota");
@@ -192,8 +191,8 @@ public class Registro_Nota extends javax.swing.JDialog {
     private javax.swing.JScrollPane jScrollPane1;
     public javax.swing.JTable tablaAsistencia;
     public javax.swing.JTextField txtApellidos;
-    public javax.swing.JTextField txtDNI;
     public javax.swing.JTextField txtNombre;
     public javax.swing.JTextField txtNota;
+    public javax.swing.JTextField txtdni;
     // End of variables declaration//GEN-END:variables
 }

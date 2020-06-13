@@ -6,8 +6,10 @@ import java.io.File;
 import javax.swing.JOptionPane;
 import modelo.dao.DaoAlumno;
 import modelo.dao.DaoMateria;
+import modelo.dao.DaoNotas;
 import modelo.dao.impl.DaoAlumnoImpl;
 import modelo.dao.impl.DaoMateriaImpl;
+import modelo.dao.impl.DaoNotasImpl;
 import vista.MenuPrincipal;
 import vista.Registro_Alumno;
 import vista.Registro_Asistencia;
@@ -29,6 +31,7 @@ public class ControladorMenu implements ActionListener {
     //Dao de los jframes
     DaoMateria daoMateria = new DaoMateriaImpl();
     DaoAlumno daoAlumno = new DaoAlumnoImpl();
+    DaoNotas daoNota = new DaoNotasImpl();
     
 
     //obtenemos nombre de usuario del logins
@@ -65,7 +68,7 @@ public class ControladorMenu implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         
-        //Boton Registrar MATERIA del Menu Principañ
+        //Boton Registrar MATERIA del Menu Principal
         if (e.getSource() == menuPrincipal.btnRegistrarMateria) {
             //llamamos al controlador del jframe al que nos dirigimos
             ControladorMateria ctrlMateria = new ControladorMateria(registroMateria, daoMateria);
@@ -106,9 +109,10 @@ public class ControladorMenu implements ActionListener {
         if (e.getSource() == menuPrincipal.btnRegistrarNotas) {
             File directorio = new File(direccion + docente);
             if (directorio.exists()) {
-                //llamamos al controlador del jframe al que nos dirigimos
-                JOptionPane.showMessageDialog(null, "Registrar nota");
-                //menuPrincipal.dispose();
+                ControladorNotas ctrlNotas = new ControladorNotas(daoNota, registroNota);
+                ctrlNotas.iniciar();
+                
+                menuPrincipal.dispose();
             } else {
                 JOptionPane.showMessageDialog(null, "Primero se debe registrar las materias " + docente);
             }

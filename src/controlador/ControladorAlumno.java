@@ -56,8 +56,11 @@ public class ControladorAlumno implements ActionListener,ItemListener, MouseList
         this.vista_alumno.btnAgregar.addActionListener(this);
         this.vista_alumno.btnLimpiar.addActionListener(this);
         this.vista_alumno.comboMateria.addItemListener(this);
+        
+        //Ir al Jdialog Lista ALumnos
         this.vista_alumno.btnListaAlumnos.addActionListener(this); 
-        //tabla
+        
+        //setear los datos de ls tabla de la vista Lista Alumnos a Registro Alumnos
         this.listaAlumnos.tablaListaAlumnos.addMouseListener(this);
     }
 
@@ -68,10 +71,7 @@ public class ControladorAlumno implements ActionListener,ItemListener, MouseList
         vista_alumno.txtDNI.setText("");
     }
     
-    //Llenar la tabla según la materia
-    public void llenarTabla(String materia){
-        
-    }
+    
 
     
     //EVENTOS DE LOS BOTONES DE REGISTRO ALUMNO
@@ -100,8 +100,8 @@ public class ControladorAlumno implements ActionListener,ItemListener, MouseList
 
                 String message = daoNotas.insertarNotasFK(idalumno, idmateria);
 
-                System.out.println("IDAlumno es" + idalumno);
-                System.out.println("IDMateria es" + idmateria);
+              //  System.out.println("IDAlumno es" + idalumno);
+               // System.out.println("IDMateria es" + idmateria);
 
                 JOptionPane.showMessageDialog(null, "Alumno existente Agregado");
 
